@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
  const useStyles = makeStyles(theme => ({
     text: {
-      color: theme.palette.bgColors.main,
+      color: theme.palette.text.main,
     },
     icon: {
       color: theme.palette.primary.main,
@@ -50,8 +50,9 @@ export default function NavigationBar() {
         TransitionComponent={Fade}
       >
         <MenuItem className={classes.text} component={RLink} to="/" onClick={handleClose}>Home</MenuItem>
-        <MenuItem className={classes.text} component={RLink} to="/Security" onClick={handleClose}>Security</MenuItem>
-        <MenuItem className={classes.text} component={RLink} to="/Links" onClick={handleClose}>Links</MenuItem>
+        <MenuItem className={classes.text} component={RLink} to="/Services" onClick={handleClose}>Security</MenuItem>
+        <MenuItem className={classes.text} component={RLink} to="/About" onClick={handleClose}>About</MenuItem>
+        <MenuItem className={classes.text} component={RLink} to="/Eth-Orb" onClick={handleClose}>Eth-Orb</MenuItem>
       </Menu>
     </div> 
   );

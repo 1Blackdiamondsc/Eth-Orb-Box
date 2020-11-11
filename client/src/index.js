@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App";
+import App from "./App/index";
 import * as serviceWorker from './serviceWorker';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
@@ -19,7 +19,8 @@ const theme = createMuiTheme({
       main: "#5e3a87"
     },
     text: {
-      main: "#017FA2"
+      main: "#017FA2",
+      smalltxt: "#1495CC"
     },
     textBg:{
       main: "#c1c8c9"

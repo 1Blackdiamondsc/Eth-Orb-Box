@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 export default function CoinMarkup(props) {
     return (
         <>
@@ -9,6 +10,7 @@ export default function CoinMarkup(props) {
         </>
     )
 }
+
 CoinMarkup.propTypes = {
     coinPrice: PropTypes.number,
     coinHigh: PropTypes.number,
