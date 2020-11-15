@@ -27,7 +27,7 @@ function ServicesMkup() {
         <div className={classes.root}>
             <Container>
 
-                <Grid container spacing={5} direction="column" xs={12}>
+                <Grid container spacing={5} direction="column" >
                     <Grid className={classes.head} item xs={12}>
                         We offer a variety of services
                     </Grid>

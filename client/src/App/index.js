@@ -7,14 +7,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Home from "../components/Home";
 import ServicesMkup from "../components/Services";
 import About from "../components/About";
-import EthOrbGame from "../components/EthOrbGame";
+import EthOrbApp from "../components/EthOrbApp";
 import { NoMatch } from "./NoMatch";
 import NavigationBar from "../components/NavigationBar";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.bgColors.main,
+    backgroundColor: theme.palette.bgColors.new2,
     padding: '0px',
     margin: '0px'
   },
@@ -38,7 +38,7 @@ export default function App() {
             <About />
           </Route>
           <Route path="/Eth-Orb">
-            <EthOrbGame />
+            <EthOrbApp />
           </Route>
           <Route component={NoMatch} />
         </Switch>

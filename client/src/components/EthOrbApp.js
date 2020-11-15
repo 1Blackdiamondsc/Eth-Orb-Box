@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import SimpleStorageContract from "../contracts/SimpleStorage.json";
-import getWeb3 from "../getWeb3";
+import getWeb3 from "./getWeb3";
 import CoinMarkup from "./CoinMarkup";
 import axios from "axios";
-//import CoinAppClass from "./components/CoinAppClass";
+import { ToastContainer, toast } from 'react-toastify';
+//import OrbAppClass from "./components/CoinAppClass";
 
-class EthOrbGame extends Component {
-  state = { 
+class EthOrbApp extends Component {
+  state = {
     //dapp state
-    storageValue: 0, web3: null, accounts: null, contract: null, 
+    storageValue: 0, web3: null, accounts: null, contract: null, defaultAddress: null,
     //game state
     choiceGreen: false, choiceRed: false,
     //ethdata state
     coinPrice: 0, coinHigh: 0, coinLow: 0
   };
 
-  //async functions
+  //async functions. runExample from the t-r box.
   runExample = async () => {
     const { accounts, contract } = this.state;
 
@@ -38,9 +39,9 @@ class EthOrbGame extends Component {
       const dailyLow = res.data.market_data.low_24h.usd;
       //Set state
       this.setState({ coinPrice: price, coinLow: dailyLow, coinHigh: dailyHigh });
-  } catch (error) {
+    } catch (error) {
       console.log(error);
-  }
+    }
   };
 
   componentDidMount = async () => {
@@ -50,6 +51,8 @@ class EthOrbGame extends Component {
 
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
+
+      const defAcc = web3.eth.defaultAccount;
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
@@ -61,7 +64,7 @@ class EthOrbGame extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance });
+      this.setState({ web3, accounts, contract: instance, defaultAddress: defAcc });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -71,18 +74,30 @@ class EthOrbGame extends Component {
     }
 
     //eth market data fetch
-    if(!this.state.coinPrice){
+    if (!this.state.coinPrice) {
       await this.coinRequest();
     }
     this.interval = setInterval(async () => {
       await this.coinRequest();
     }, 5000);
-      
+
   }
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-  
+
+  gameGreen = async () => {
+    const { contract, accounts } = this.state;
+    this.setState({ gameGreen: true });
+    toast(' Wow so easy!');
+    await contract.methods
+      .awardItem(
+        "0xDfF4b6584CA77358A4017946bfE5Aec09522Af27",
+        "https://api.jsonbin.io/b/5fb02a8a3abee46e2438d0d7/1"
+      )
+      .send({from: this.state.defaultAddress});
+  };
+
   render() {
 
     if (!this.state.web3) {
@@ -90,8 +105,9 @@ class EthOrbGame extends Component {
     }
     return (
       <div className="App">
-        <div>The stored value is: {this.state.storageValue}</div>
-        <CoinMarkup coinPrice={this.state.coinPrice} coinHigh={this.state.coinHigh} coinLow={this.state.coinLow}/>
+        <CoinMarkup coinPrice={this.state.coinPrice} coinHigh={this.state.coinHigh} coinLow={this.state.coinLow} />
+        <button onClick={() => this.gameGreen()}>test button</button>
+        <ToastContainer />
       </div>
     );
   }
@@ -99,4 +115,4 @@ class EthOrbGame extends Component {
 /*   <CoinAppClass contract={this.state.contract} web3={this.state.web3} accounts={this.state.accounts} 
         coinPrice={this.state.coinPrice} coinHigh={this.state.coinHigh} coinLow={this.state.coinLow}/>
 }*/
-export default EthOrbGame;
+export default EthOrbApp;
