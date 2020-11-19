@@ -11,8 +11,8 @@
 # production
 /build
 
-*.png
-*.jpg
+.png
+.jpg
 # assets
 /src/assets
 /src/components/ComponentAssets

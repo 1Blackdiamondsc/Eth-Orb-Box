@@ -87,7 +87,7 @@ class EthOrbApp extends Component {
   }
 
   gameGreen = async () => {
-    const { contract, accounts } = this.state;
+    const { contract } = this.state;
     this.setState({ gameGreen: true });
     toast(' Wow so easy!');
     await contract.methods

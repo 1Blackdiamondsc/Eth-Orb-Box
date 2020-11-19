@@ -4,9 +4,9 @@ import {
 } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 //comp imports
-import Home from "../components/Home";
-import ServicesMkup from "../components/Services";
-import About from "../components/About";
+import Home from "../components/Pages/Home";
+import ServicesMkup from "../components/Pages/Services";
+import About from "../components/Pages/About";
 import EthOrbApp from "../components/EthOrbApp";
 import { NoMatch } from "./NoMatch";
 import NavigationBar from "../components/NavigationBar";

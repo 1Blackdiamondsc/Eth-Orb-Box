@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App/index";
 import * as serviceWorker from './serviceWorker';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 
 const rootNode = document.getElementById('root');
 
@@ -69,6 +69,7 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
+    <CssBaseline/>
   </ThemeProvider>
   ,
   rootNode
