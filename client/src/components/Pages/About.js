@@ -3,18 +3,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
-//Mui styles
+
+//makeStyles hook from mui, passing in the theme provided from top level.
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
     },
     head: {
-        color: theme.palette.heads.main,
+        color: theme.palette.text.light,
         fontSize: theme.typography.headers.fontSize,
         fontFamily: theme.typography.headers.fontFamily,
     },
     text: {
-        color: theme.palette.primary.side,
+        color: theme.palette.text.light,
         fontSize: theme.typography.fontSize,
         fontFamily: theme.typography.fontFamily,
         fontWeight: theme.typography.fontWeightSemiLight,

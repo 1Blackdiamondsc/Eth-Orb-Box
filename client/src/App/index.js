@@ -7,14 +7,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Home from "../components/Pages/Home";
 import ServicesMkup from "../components/Pages/Services";
 import About from "../components/Pages/About";
-import EthOrbApp from "../components/EthOrbApp";
+import EthOrbApp from "../components//Pages/EthOrbApp";
 import { NoMatch } from "./NoMatch";
 import NavigationBar from "../components/NavigationBar";
 
+//makeStyles hook from mui, passing in the theme provided from top level.
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.bgColors.new2,
+    backgroundColor: theme.palette.primary.bgDark,
     padding: '0px',
     margin: '0px'
   },

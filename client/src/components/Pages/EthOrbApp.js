@@ -17,19 +17,7 @@ class EthOrbApp extends Component {
     coinPrice: 0, coinHigh: 0, coinLow: 0
   };
 
-  //async functions. runExample from the t-r box.
-  runExample = async () => {
-    const { accounts, contract } = this.state;
-
-    // Stores a given value, 5 by default.
-    await contract.methods.set(20).send({ from: accounts[0] });
-
-    // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
-
-    // Update state with the result.
-    this.setState({ storageValue: response });
-  };
+  //async functions.
 
   //market data request
   coinRequest = async () => {
@@ -89,24 +77,33 @@ class EthOrbApp extends Component {
   }
 
   gameGreen = async () => {
-    const { contract } = this.state;
+    const { contract, accounts, defaultAddress } = this.state;
     this.setState({ gameGreen: true });
-    toast(' Wow so easy!');
-    await contract.methods
+    const jsonItem = await axios.get("https://api.jsonbin.io/b/5fb02a8a3abee46e2438d0d7/1"); 
+    try {
+      await contract.methods
       .awardItem(
-        "0xDfF4b6584CA77358A4017946bfE5Aec09522Af27",
+        jsonItem,
         "https://api.jsonbin.io/b/5fb02a8a3abee46e2438d0d7/1"
       )
-      .send({from: this.state.defaultAddress});
+      .send({ from: accounts[0]});
+    }
+    catch (error) {
+      console.log(error);
+    }
+    
+    toast(' Wow so easy!');
+    
   };
 
   render() {
     if(!this.state.web3) {
-      <div> Sort out your metamask</div>
+      return (<div> Sort out your metamask</div>);
+      
     }
 
     return (
-      <div className="App">
+      <div>
         <EthMarkup coinPrice={this.state.coinPrice} coinHigh={this.state.coinHigh} coinLow={this.state.coinLow} />
         <button onClick={() => this.gameGreen()}>test button</button>
         <ToastContainer />

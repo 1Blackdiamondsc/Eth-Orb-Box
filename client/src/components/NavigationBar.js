@@ -20,19 +20,19 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 0,
   },
   popOuts: {
-    color: theme.palette.heads.main,
+    color: theme.palette.text.light,
     fontFamily: theme.typography.headers.fontFamily,
   },
   barItems: {
-    color: theme.palette.heads.main,
+    color: theme.palette.text.light,
     fontFamily: theme.typography.headers.fontFamily,
-    indicatorColor: theme.palette.heads.main,
+    indicatorColor: theme.palette.text.light,
   },
   icon: {
     color: theme.palette.primary.main,
   },
-  textBg: {
-    color: theme.palette.bgColors.main
+  text: {
+    color: theme.palette.primary.bgDark
   }
 }));
 
@@ -60,7 +60,7 @@ export default function NavigationBar() {
   };
 
 
-
+  //return tabs for desktop and menu for mobile viewports.
   return (
     <div className={classes.root}>
 
@@ -70,7 +70,7 @@ export default function NavigationBar() {
             <MenuIcon className={classes.icon} />
           </Button>
           <Menu
-            className={classes.textBg}
+            className={classes.icon}
             id="fade-menu"
             anchorEl={anchorEl}
             keepMounted
@@ -96,6 +96,7 @@ export default function NavigationBar() {
               <Tab component={RLink} to="/" label="Home" />
               <Tab component={RLink} to="/Services" label="Services" />
               <Tab component={RLink} to="/About" label="About" />
+              <Tab component={RLink} to="/Eth-Orb" label="Eth-Orb" />
             </Tabs>
           </>
         )}

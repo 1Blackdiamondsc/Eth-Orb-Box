@@ -12,13 +12,9 @@ const theme = createMuiTheme({
     primary: {
       main: "#45BAED",
       side: "#379fcc",
-      tertiary: "#3ab9f0"
-    },
-    bgColors: {
-      main: "#00303D",
-      darker: "#011328",
-      new: "#365B6D",
-      new2: "#274268",
+      tertiary: "#3ab9f0",
+      bglight: "#E6EFEC",
+      bgDark: "#274268"
     },
     secondary: {
       main: "#5e3a87"
@@ -26,9 +22,6 @@ const theme = createMuiTheme({
     text: {
       dark: "#017FA2",
       light: "#1495CC"
-    },
-    heads: {
-      main: "#1495CC",
     },
     textBg:{
       main: "#c1c8c9"
@@ -59,7 +52,9 @@ const theme = createMuiTheme({
       xl: 1920,
     },
     spacing: {
-
+      spaced: {
+        paddingTop: 100
+      },
     }
   },
 })

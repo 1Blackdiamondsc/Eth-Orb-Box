@@ -5,18 +5,18 @@ import {TwoByOneGrid} from '../GridLayoutComps/Grids';
 import {ThreeByOneGrid} from '../GridLayoutComps/Grids';
 
 
-//Mui styles
+//makeStyles hook from mui, passing in the theme provided from top level.
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
     },
     head: {
-        color: theme.palette.heads.main,
+        color: theme.palette.text.light,
         fontSize: theme.typography.headers.fontSize,
         fontFamily: theme.typography.headers.fontFamily,
     },
     text: {
-        color: theme.palette.primary.side,
+        color: theme.palette.text.light,
         fontSize: theme.typography.fontSize,
         fontFamily: theme.typography.fontFamily,
         fontWeight: theme.typography.fontWeightSemiLight,
@@ -27,8 +27,10 @@ function ServicesMkup() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
+
             <Container>
-            <TwoByOneGrid
+
+                <TwoByOneGrid
                     header1="jeffrey" 
                     header2="tezos" 
                     text1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -39,6 +41,7 @@ function ServicesMkup() {
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
                     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
+                    space={5}
                 />
                 <TwoByOneGrid
                     header1="jeffrey" 
@@ -53,9 +56,10 @@ function ServicesMkup() {
                     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
                 />
 
-               
             </Container>
+
             <Container>
+
                 <ThreeByOneGrid
                     header1="jeff"
                     header2="bezos"
@@ -74,8 +78,8 @@ function ServicesMkup() {
                     
                 />
 
-
             </Container>
+            
         </div>
 
     )
