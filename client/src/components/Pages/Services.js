@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
-import {TwoByOneGrid} from '../GridLayoutComps/Grids';
-import {ThreeByOneGrid} from '../GridLayoutComps/Grids';
+import { TwoByOneGrid } from '../Grids';
+import { ThreeByOneGrid } from '../Grids';
 
 
 //makeStyles hook from mui, passing in the theme provided from top level.
@@ -58,7 +58,7 @@ function ServicesMkup() {
 
             </Container>
 
-            <Container>
+            <Container maxWidth="lg">
 
                 <ThreeByOneGrid
                     header1="jeff"

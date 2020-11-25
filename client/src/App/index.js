@@ -38,9 +38,6 @@ export default function App() {
           <Route path="/About">
             <About />
           </Route>
-          <Route path="/Eth-Orb">
-            <EthOrbApp />
-          </Route>
           <Route component={NoMatch} />
         </Switch>
       </Router>

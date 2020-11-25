@@ -1,6 +1,4 @@
 node_modules
 .secret
-.png
-.jpg
+
 # assets
-client/src/components/ComponentAssets
