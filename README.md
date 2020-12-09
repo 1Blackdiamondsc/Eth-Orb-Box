@@ -1,4 +1,4 @@
 # Eth-Orb-Box
-Huge React dapp project. Hosted by Vercel. More info in the future.
+React dApp on Vercel
 
 https://eth-orb-box-o0wzpyf61.vercel.app
