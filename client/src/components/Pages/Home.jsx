@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import { TwoByOneGrid } from '../Grids';
 import { ThreeByOneGrid } from '../Grids';
-import IntroHead from '../IntroHead';
+import IntroHead from '../IntroHead.jsx';
 
 //makeStyles hook from mui, passing in the theme provided from top level.
 const useStyles = makeStyles(theme => ({

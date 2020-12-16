@@ -1,6 +1,6 @@
 {
-  "short_name": "SharpTec",
-  "name": "SharpTec React App",
+  "short_name": "stc",
+  "name": "sharptec-app",
   "icons": [
     {
       "src": "logocam.ico",

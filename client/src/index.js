@@ -1,34 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App/index";
 import * as serviceWorker from './serviceWorker';
-import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
+import { BrowserRouter } from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+
+import App from "./App/index.jsx";
+
 
 const rootNode = document.getElementById('root');
 
+//Material UI theme to be passed down app. palette will be organised in next commit, typog etc. will be soon after.
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#45BAED",
       side: "#379fcc",
+      dark: "#274268",
       tertiary: "#3ab9f0",
-      bglight: "#E6EFEC",
+      bgLight: "#E6EFEC",
+      bgDark: "#274268"
+    },
+    backGrounds: {
+      bgLight: "#E9E9ED",
       bgDark: "#274268"
     },
     secondary: {
-      main: "#5e3a87"
+      main: "#274268"
     },
     text: {
       dark: "#017FA2",
       light: "#1495CC"
     },
-    textBg:{
-      main: "#c1c8c9"
-    },
-    darkBlue: {
-      main: "#0B4F6C"
-    },
+
   },
   typography: {
     fontFamily: "bahnschrift semilight",
@@ -55,7 +58,7 @@ const theme = createMuiTheme({
       spaced: {
         paddingTop: 100
       },
-    }
+    },
   },
 })
 
@@ -64,7 +67,6 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    <CssBaseline/>
   </ThemeProvider>
   ,
   rootNode

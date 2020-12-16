@@ -10,7 +10,6 @@ const getWeb3 = () =>
         try {
           // Request account access if needed. Previous method: await window.ethereum.enable();
           await window.ethereum.request({ method: 'eth_requestAccounts' });
-          
           web3.eth.defaultAccount = '0x2ff172D94f3371700DC2f799996cb7e7eB8152c5';
           // Acccounts now exposed
           resolve(web3);

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-
-function EthMarkup( {coinPrice, coinHigh, coinLow} ) {
+//using React.memo to compare previous state to next state to avoid unnecessary re-renders.
+function EthMarkup({ coinPrice, coinHigh, coinLow }) {
     return (
         <>
             <h3>Market Data as per Coin Gecko. My question is, does your uncle own the market?</h3>
