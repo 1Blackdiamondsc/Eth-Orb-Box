@@ -7,7 +7,7 @@ client/debug.log
 client/ui-debug.log
 
 # assets
-client/src/components/ComponentAssets/head.png
+
 client/.eslintcache
 
 
