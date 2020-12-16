@@ -1,3 +1,3 @@
 # Eth-Orb-Box
 
-Prod: eth-orb-box.vercel.app
+Prod: https://eth-orb-box.vercel.app/
