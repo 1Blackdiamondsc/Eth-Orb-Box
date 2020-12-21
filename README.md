@@ -1,4 +1,9 @@
 # Eth-Orb-Box
-React dApp on Vercel
+## Built with the Truffle React Box
+## Prod: https://eth-orb-box.vercel.app/
+### Front-End
+React code located in the client sub directory.
 
-https://eth-orb-box-o0wzpyf61.vercel.app
+### Solidity Contracts
+Contracts located in root
+
