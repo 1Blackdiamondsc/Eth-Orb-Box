@@ -2,13 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-
-import App from "./App/index.jsx";
+import ThemeProvider from './Styles/ThemeProvider'
+import App from "./App/index";
 
 
 const rootNode = document.getElementById('root');
 
+ReactDOM.render(
+  <ThemeProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ThemeProvider>
+  ,
+  rootNode
+);
+/* 
 //Material UI theme to be passed down app. palette will be organised in next commit, typog etc. will be soon after.
 const theme = createMuiTheme({
   palette: {
@@ -62,15 +71,8 @@ const theme = createMuiTheme({
   },
 })
 
-ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </ThemeProvider>
-  ,
-  rootNode
-);
+
+*/
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

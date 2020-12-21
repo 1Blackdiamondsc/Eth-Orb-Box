@@ -1,88 +1,60 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Container } from '@material-ui/core';
-import { TwoByOneGrid } from '../Grids';
-import { ThreeByOneGrid } from '../Grids';
+import { Container, Button } from '@material-ui/core';
+import { TwoxOne } from '../Grids/TwoxOne';
+import { ThreexOne } from '../Grids/ThreexOne';
 
-
-//makeStyles hook from mui, passing in the theme provided from top level.
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    },
-    head: {
-        color: theme.palette.text.light,
-        fontSize: theme.typography.headers.fontSize,
-        fontFamily: theme.typography.headers.fontFamily,
-    },
-    text: {
-        color: theme.palette.text.light,
-        fontSize: theme.typography.fontSize,
-        fontFamily: theme.typography.fontFamily,
-        fontWeight: theme.typography.fontWeightSemiLight,
-    },
-}));
-
-function ServicesMkup() {
-    const classes = useStyles();
+function About() {
     return (
-        <div className={classes.root}>
-
-            <Container>
-
-                <TwoByOneGrid
-                    header1="jeffrey" 
-                    header2="tezos" 
-                    text1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
-                    text2="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
-                    space={5}
-                />
-                <TwoByOneGrid
-                    header1="jeffrey" 
-                    header2="tezos" 
-                    text1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
-                    text2="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
-                />
-
+        <div >
+            <Container >
+                <Button color='primary'> FBI FRAUDULENCE </Button>
             </Container>
+        <h1> </h1>
+            <Container >
+                <TwoxOne
+                    header1="jeffrey"
+                    header2="tezos"
+                    text1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    text2="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                />
 
-            <Container maxWidth="lg">
-
-                <ThreeByOneGrid
+                <TwoxOne
+                    header1="jeffrey"
+                    header2="tezos"
+                    text1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    text2="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                />
+                <ThreexOne
                     header1="jeff"
                     header2="bezos"
-                    header3="tezos" 
+                    header3="tezos"
                     text1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                     text2="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                     text3="t amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Duis aute irure dolor in reprehenderit in voluptate v"
-                    
+
                 />
-
             </Container>
-            
         </div>
-
     )
 }
-
-export default ServicesMkup;
+export default About;

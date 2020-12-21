@@ -1,39 +1,17 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Container } from '@material-ui/core';
-import { TwoByOneGrid } from '../Grids';
-import { ThreeByOneGrid } from '../Grids';
-import IntroHead from '../IntroHead.jsx';
-
-//makeStyles hook from mui, passing in the theme provided from top level.
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    },
-    head: {
-        color: theme.palette.text.light,
-        fontSize: theme.typography.headers.fontSize,
-        fontFamily: theme.typography.headers.fontFamily,
-    },
-    text: {
-        color: theme.palette.text.light,
-        fontSize: theme.typography.fontSize,
-        fontFamily: theme.typography.fontFamily,
-        fontWeight: theme.typography.fontWeightSemiLight,
-    },
-}));
+import { Container, Button } from '@material-ui/core';
+import { TwoxOne } from '../Grids/TwoxOne';
+import { ThreexOne } from '../Grids/ThreexOne';
 
 
-function Home() {
-    const classes = useStyles();
+function Serv() {
     return (
-        <div className={classes.root}>
+        <div >
             <Container >
-                <IntroHead />
+                <Button color='primary'> FBI FRAUDULENCE </Button>
             </Container>
-
-            <Container>
-                <TwoByOneGrid
+            <Container >
+                <TwoxOne
                     header1="jeffrey"
                     header2="tezos"
                     text1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -46,7 +24,7 @@ function Home() {
                     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                 />
 
-                <TwoByOneGrid
+                <TwoxOne
                     header1="jeffrey"
                     header2="tezos"
                     text1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -58,7 +36,7 @@ function Home() {
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
                     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                 />
-                <ThreeByOneGrid
+                <ThreexOne
                     header1="jeff"
                     header2="bezos"
                     header3="tezos"
@@ -80,5 +58,5 @@ function Home() {
     )
 }
 
-export default Home;
+export default Serv;
 

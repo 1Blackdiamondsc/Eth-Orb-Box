@@ -4,58 +4,62 @@ import getWeb3 from "../../api/getWeb3";
 import EthMarkup from "../EthMarkup.jsx";
 import axios from "axios";
 import {
-  Button,
+  Button, easing,
 } from '@material-ui/core';
 
+type MyState = {
+  //dapp state
+  web3: null, accounts: [], defaultAddress: string,
+  //ethdata state
+  coinPrice: number, coinHigh: number, coinLow: number
+};
 
 //considering to change to react.function component
 class EthOrbApp extends Component {
-  state = {
+  state: MyState = {
     //dapp state
-    storageValue: 0, web3: null, accounts: null, contract: null, defaultAddress: null,
-    //game state
-    choiceGreen: false, choiceRed: false,
+    web3: null, accounts: [], defaultAddress: "",
     //ethdata state
     coinPrice: 0, coinHigh: 0, coinLow: 0
   };
 
   //market data request
-  ethReq = async () => {
+  ethReq = async (): Promise<any> => {
     try {
       console.log('before the request');
       const res = await axios.get('https://api.coingecko.com/api/v3/coins/ethereum?market_data=true');
       const price = res.data.market_data.current_price.usd;
       const dailyHigh = res.data.market_data.high_24h.usd;
       const dailyLow = res.data.market_data.low_24h.usd;
+      console.log(' finished eth fetch');
       //Set state
       this.setState({ coinPrice: price, coinLow: dailyLow, coinHigh: dailyHigh });
     } catch (error) {
       console.log(error);
     }
   };
+
   //truffle-react-box boilerplate web3 method.
   //When EthOrb mounts lets async call getWeb3() awaiting a result or rejection. Expected result is metamask connection or truffle dev.
   //Start an interval on mount, calling ethReq every 5 secs.
   componentDidMount = async () => {
+
+    //eth market data fetch
+    if (!this.state.coinPrice) {
+      await this.ethReq();
+    }
+
+    setInterval(async () => this.ethReq, 5300);
+
     try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
-
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
       //define a default account with a built-in web3.eth method
       const defAcc = web3.eth.defaultAccount;
-
-      // Get the contract instance. Note: Might be unnecessary in the future
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = SimpleStorageContract.networks[networkId];
-      const instance = new web3.eth.Contract(
-        SimpleStorageContract.abi,
-        deployedNetwork && deployedNetwork.address,
-      );
-
       // Set web3, accounts, and contract to the state.
-      this.setState({ web3, accounts, contract: instance, defaultAddress: defAcc });
+      this.setState({ web3, accounts, defaultAddress: defAcc });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -63,22 +67,7 @@ class EthOrbApp extends Component {
       );
       console.error(error);
     }
-
-    //eth market data fetch
-    if (!this.state.coinPrice) {
-      await this.ethReq();
-    }
-    this.interval = setInterval(async () => {
-      await this.ethReq();
-    }, 5000);
-
   }
-
-  //unmounting. end the interval for eth price req.
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
   //testing posts & gets with axios
   postTest = async () => {
     console.log("before req POST");
@@ -86,14 +75,12 @@ class EthOrbApp extends Component {
       account: 'Alive and Well', instance: 'MIA'
     });
     await axios.post('https://cloud-api-test.yournewempire.vercel.app', jsonParams, {
-    headers : {
-      'Content-Type': 'application/json'
-    }
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
       .then(function (response) {
-        response.data.data; 
-        response.data.headers['application/json']
-        console.log(response.data);
+        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -119,10 +106,11 @@ class EthOrbApp extends Component {
       <div>
         <EthMarkup coinPrice={this.state.coinPrice} coinHigh={this.state.coinHigh} coinLow={this.state.coinLow} />
         <Button variant="contained" onClick={() => this.postTest()}>test button POST</Button>
-        <Button variant="contained"onClick={() => this.getTest()}>test button GET</Button>
+        <Button variant="contained" onClick={() => this.getTest()}>test button GET</Button>
       </div>
     );
   }
 };
 
 export default EthOrbApp;
+
