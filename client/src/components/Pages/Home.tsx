@@ -11,7 +11,6 @@ function Home() {
         <div >
             <Container >
                 <IntroHead />
-                <Button color='primary'> FBI FRAUDULENCE </Button>
             </Container>
         <h1> </h1>
             <Container >
