@@ -6,11 +6,7 @@ import { ThreexOne } from '../Grids/ThreexOne';
 function About() {
     return (
         <div >
-            <Container >
-                <Button color='primary'> FBI FRAUDULENCE </Button>
-            </Container>
-        <h1> </h1>
-            <Container >
+            <Container>
                 <TwoxOne
                     header1="jeffrey"
                     header2="tezos"
