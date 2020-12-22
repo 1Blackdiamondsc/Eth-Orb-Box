@@ -10,6 +10,7 @@ export const lightTheme = createMuiTheme({
       main: '#1495CC',
       light: '#E6EFEC'
     },
+    
     //hex for box div in App/index
     background: {
       default: '#E6EFEC'
@@ -21,6 +22,6 @@ export const lightTheme = createMuiTheme({
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightBold: 700,
-  
+    fontFamily: 'Linden Hill',
   },
 });
