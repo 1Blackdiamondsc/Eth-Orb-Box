@@ -50,7 +50,8 @@ class EthOrbApp extends Component {
     }
 
     setInterval(async () => this.ethReq, 5300);
-
+/*
+    //promise for web3. Commented out for 
     try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
@@ -68,6 +69,8 @@ class EthOrbApp extends Component {
       console.error(error);
     }
   }
+  */
+};
   //testing posts & gets with axios
   postTest = async () => {
     console.log("before req POST");
