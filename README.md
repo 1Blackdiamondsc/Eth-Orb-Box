@@ -1,6 +1,6 @@
 # Eth-Orb-Box
 ## Built with the Truffle React Box
-## Prod: https://eth-orb-box.vercel.app/
+## client hosted at: https://eth-orb-box.vercel.app/
 ### Front-End
 React code located in the client sub directory.
 
