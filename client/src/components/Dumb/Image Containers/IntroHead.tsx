@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'material-ui-image';
 import Box from '@material-ui/core/Box';
-import img from './ComponentAssets/head.png'
+import img from '../../assets/head.png'
 
 export default function IntroHead() {
     return (

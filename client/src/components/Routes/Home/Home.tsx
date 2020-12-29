@@ -1,13 +1,18 @@
 import React from 'react';
 import { Container, Button } from '@material-ui/core';
-import { TwoxOne } from '../Grids/TwoxOne';
-import { ThreexOne } from '../Grids/ThreexOne';
+import {TwoxOne} from '../../Dumb/Grids/TwoxOne';
+import {ThreexOne} from '../../Dumb/Grids/ThreexOne';
+import IntroHead from '../../Dumb/Image Containers/IntroHead';
 
-
-function Serv() {
+function Home() {
+  
+ 
     return (
         <div >
-            
+            <Container >
+                <IntroHead />
+            </Container>
+        <h1> </h1>
             <Container >
                 <TwoxOne
                     header1="jeffrey"
@@ -56,5 +61,5 @@ function Serv() {
     )
 }
 
-export default Serv;
+export default Home;
 

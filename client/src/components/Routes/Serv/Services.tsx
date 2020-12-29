@@ -1,12 +1,14 @@
-import React from 'react'
+import React from 'react';
 import { Container, Button } from '@material-ui/core';
-import { TwoxOne } from '../Grids/TwoxOne';
-import { ThreexOne } from '../Grids/ThreexOne';
+import { TwoxOne } from '../../Dumb/Grids/TwoxOne';
+import { ThreexOne } from '../../Dumb/Grids/ThreexOne';
 
-function About() {
+
+function Serv() {
     return (
         <div >
-            <Container>
+            
+            <Container >
                 <TwoxOne
                     header1="jeffrey"
                     header2="tezos"
@@ -53,4 +55,6 @@ function About() {
         </div>
     )
 }
-export default About;
+
+export default Serv;
+
