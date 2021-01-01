@@ -68,7 +68,6 @@ function App() {
   return (
     <Route
       render={({ location }) => (
-
         <Box bgcolor="background.default" >
           <Header />
           <PoseGroup>
@@ -90,7 +89,6 @@ function App() {
               endIcon={<ArrowUpwardIcon />}
               onClick={() => scroll.scrollToTop()}
               size="small"
-
             > Scroll Top
             </Button>
           </Box>
