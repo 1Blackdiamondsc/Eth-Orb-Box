@@ -12,11 +12,11 @@ import posed, { PoseGroup } from 'react-pose';
 //local contexts
 import ThemeProvider from './themes/ThemeProvider';
 //comp imports
-import Home from "./components/Routes/Home/Home";
-import Serv from "./components/Routes/Serv/Services";
-import About from "./components/Routes/About/About";
-import EthOrbApp from "./components/Routes/Orb/EthOrbApp";
-import Header from "./components/Header/Header";
+import Home from "./components/Routes/Home/index";
+import Serv from "./components/Routes/Serv/index";
+import About from "./components/Routes/About/index";
+import EthOrbApp from "./components/Routes/Orb/index";
+import Header from "./components/Header/index";
 
 const RoutesContainer = posed.div({
   enter: { opacity: 1, delay: 300 },

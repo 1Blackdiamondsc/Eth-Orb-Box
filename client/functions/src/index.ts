@@ -17,7 +17,7 @@ export const testAPI = functions.https.onRequest((req: Request, res: Response): 
   }
   else if (req.method === 'GET') {
     res.send([
-      { one: "easy", two: "hard" }
+      { one: "easy", two: "hard" },
     ]);
   }
   else if (req.method === 'POST') {

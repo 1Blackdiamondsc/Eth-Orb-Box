@@ -20,7 +20,7 @@ const postTest = async () => {
   const jsonParams = JSON.stringify({
     account: 'Alive and Well', instance: 'MIA'
   });
-  await axios.post('https://cloud-api-test.yournewempire.vercel.app', jsonParams, {
+  await axios.post('https://us-central1-test-cf-97bfc.cloudfunctions.net/testAPI', jsonParams, {
     headers: {
       'Content-Type': 'application/json'
     }
@@ -37,7 +37,7 @@ const postTest = async () => {
 
 const getTest = async () => {
   console.log("before req GET");
-  await axios.get('https://cloud-api-test.yournewempire.vercel.app/')
+  await axios.get('https://us-central1-test-cf-97bfc.cloudfunctions.net/testAPI')
     .then(function (response) {
       console.log(response);
     })
