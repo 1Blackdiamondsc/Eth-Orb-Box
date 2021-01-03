@@ -37,7 +37,7 @@ export const MenuFade = ({
                 <MenuItem component={RLink} to="/" onClick={handleClose}>Home</MenuItem>
                 <MenuItem component={RLink} to="/Services" onClick={handleClose}>Services</MenuItem>
                 <MenuItem component={RLink} to="/About" onClick={handleClose}>About</MenuItem>
-                <MenuItem component={RLink} to="/Orb" onClick={handleClose}>About</MenuItem>
+                <MenuItem component={RLink} to="/Orb" onClick={handleClose}>Orb</MenuItem>
             </Menu>
             <IconButton aria-label="switch to light mode" onClick={handleThemeChange}>
                 <Brightness4Icon fontSize='small' color='primary' />

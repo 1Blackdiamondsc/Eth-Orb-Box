@@ -9,17 +9,7 @@ import { Nav } from './AppBar'
 
 
 function Header() {
-  const [scr, setScr] = useState(false)
-  //was gonna use conditional rendering to render
-  window.addEventListener("scroll", function(){
-    if(window.pageYOffset >= 0){
-      setScr(true)
-      
-    }
-    else if (!window.pageYOffset){
-      setScr(false)
-    }
-  });
+ 
   /*
     This needs the theme setter function from context to change the theme from here.
     checked as a boolean so that I can define the theme.
@@ -37,7 +27,7 @@ function Header() {
 
   // Grab the breakpoints from theme to use as boolean for conditional render.
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   /* 
     --Menu Handlers--
     Open the menu when icon is pressed. I can define the anchorEl state variable with event argument from the click.
@@ -75,7 +65,6 @@ function Header() {
             handleThemeChange={handleThemeChange} 
             open={open}
           />
-           
         </>
       ) : (
           <Nav handleThemeChange={handleThemeChange}/>

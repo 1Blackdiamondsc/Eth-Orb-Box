@@ -4,7 +4,7 @@ import * as serviceWorker from './serviceWorker';
 import {
   BrowserRouter, Switch, Route
 } from "react-router-dom";
-import { Box, Button } from '@material-ui/core';
+import { Typography, Grid, Box, Button, } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { animateScroll as scroll } from "react-scroll";
 import axios from "axios";
@@ -12,11 +12,13 @@ import posed, { PoseGroup } from 'react-pose';
 //local contexts
 import ThemeProvider from './themes/ThemeProvider';
 //comp imports
-import Home from "./components/Routes/Home/index";
+import { Home } from "./components/Routes/Home/section1/index";
+import { Home2 } from "./components/Routes/Home/section2/index";
 import Serv from "./components/Routes/Serv/index";
 import About from "./components/Routes/About/index";
 import EthOrbApp from "./components/Routes/Orb/index";
 import Header from "./components/Header/index";
+import SideBar from "./components/SideBar/index";
 
 const RoutesContainer = posed.div({
   enter: { opacity: 1, delay: 300 },
@@ -30,10 +32,7 @@ function App() {
 
   const [coinHigh, setHigh] = useState(0);
   const [coinLow, setLow] = useState(0);
-  //use scroll method from react-scroll for user to scroll up.
-  const scrollToTop = () => {
-    scroll.scrollToTop();
-  };
+
 
   const ethReq = async (): Promise<any> => {
     try {
@@ -70,18 +69,46 @@ function App() {
       render={({ location }) => (
         <Box bgcolor="background.default" >
           <Header />
-          <PoseGroup>
-            <RoutesContainer key={location.pathname}>
-              <Switch location={location}>
-                <Route exact path="/" component={Home} key="home" />
-                <Route path="/Services" component={Serv} key="serv" />
-                <Route path="/About" component={About} key="about" />
-                <Route path="/Orb" key="orb">
-                  <EthOrbApp ethPrice={coinPrice} ethLow={coinLow} ethHigh={coinHigh} />
-                </Route>
-              </Switch>
-            </RoutesContainer>
-          </PoseGroup>
+          <Grid container spacing={0} direction="row">
+
+
+            <Grid container item spacing={1} alignItems="flex-start" direction="column" xs={3} md={3} lg={2}>
+              <Grid item>
+                <Box position="fixed">
+                  <SideBar />
+                </Box>
+              </Grid>
+            </Grid>
+
+
+            <Grid container item spacing={1} alignItems="flex-start" direction="column" xs={9} md={9} lg={10}>
+              <Grid item>
+                <PoseGroup>
+                  <RoutesContainer key={location.pathname}>
+                    <Switch location={location}>
+                      <Route exact path="/" key="home" >
+                        <Home id="section1" />
+                        <Home2 id="section2" />
+                      </Route>
+                      <Route path="/Services" key="serv"  >
+                        <Home id="section1" />
+                        <Home2 id="section2" />
+                      </Route>
+                      <Route path="/About" key="about"  >
+                        <Home id="section1" />
+                        <Home2 id="section2" />
+                      </Route>
+                      <Route path="/Orb" key="orb">
+                        <EthOrbApp ethPrice={coinPrice} ethLow={coinLow} ethHigh={coinHigh} />
+                      </Route>
+                    </Switch>
+                  </RoutesContainer>
+                </PoseGroup>
+              </Grid>
+            </Grid>
+
+          </Grid>
+
           <Box justifyContent="flex-end" display="block">
             <Button
               variant="text"

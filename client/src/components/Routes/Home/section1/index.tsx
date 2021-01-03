@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Container, Button } from '@material-ui/core';
-import {TwoxOne} from '../../Dumb/Grids/TwoxOne';
-import {ThreexOne} from '../../Dumb/Grids/ThreexOne';
-import IntroHead from '../../Dumb/Image Containers/IntroHead';
+import { TwoxOne } from '../../../Dumb/Grids/TwoxOne';
+import { ThreexOne } from '../../../Dumb/Grids/ThreexOne';
+import IntroHead from '../../../Dumb/Image Containers/IntroHead';
+type Props = {
 
-function Home() {
-  
- 
+    id: string
+}
+export const Home: FunctionComponent<Props> = ({ id }) => {
     return (
-        <div >
-            <Container >
+        <div id={id}>
+          
                 <IntroHead />
-            </Container>
-        <h1> </h1>
-            <Container >
+        
+
+          
                 <TwoxOne
-                    header1="jeffrey"
-                    header2="tezos"
+
+                    header1="SECTION"
+                    header2="ONE"
                     text1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
@@ -56,10 +58,11 @@ function Home() {
                     Duis aute irure dolor in reprehenderit in voluptate v"
 
                 />
-            </Container>
+         
         </div>
-    )
-}
+    );
+};
 
-export default Home;
+
+
 
