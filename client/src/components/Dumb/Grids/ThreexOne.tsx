@@ -19,9 +19,9 @@ export const ThreexOne: FunctionComponent<GridProps> = ({ header1, header2, head
                 <Grid container item spacing={2} alignItems="center" direction="column" xs={4}>
                     <Grid item>
                         <Typography color='primary' component="h1">
-                            <Box fontWeight="fontWeightRegular">
+                           
                                 {header1}
-                            </Box>
+                    
                         </Typography>
                     </Grid>
                     <Grid item>

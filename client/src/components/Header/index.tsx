@@ -2,7 +2,6 @@
 import React, { useState, useContext, useEffect, MouseEvent } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import { Button, Box } from '@material-ui/core';
 import { ThemeContext } from '../../themes/ThemeProvider';
 import { MenuFade } from './Menu';
 import { Nav } from './AppBar'
