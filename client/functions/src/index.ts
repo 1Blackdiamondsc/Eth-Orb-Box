@@ -4,7 +4,7 @@ import {Request, Response} from 'express';
 // // https://firebase.google.com/docs/functions/typescript
 //
 export const testAPI = functions.https.onRequest((req: Request, res: Response): void | undefined => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://test-cf-97bfc.web.app/')
+  res.setHeader('Access-Control-Allow-Origin', 'https://test-cf-97bfc.web.app')
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
   res.setHeader(
     'Access-Control-Allow-Headers',
