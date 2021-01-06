@@ -5,6 +5,7 @@ import {
   BrowserRouter, Switch, Route
 } from "react-router-dom";
 import { Typography, Grid, Box, Button, } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { animateScroll as scroll } from "react-scroll";
 import axios from "axios";
@@ -29,10 +30,8 @@ const rootNode = document.getElementById('root');
 
 function App() {
   const [coinPrice, setCoinPrice] = useState(0)
-
   const [coinHigh, setHigh] = useState(0);
   const [coinLow, setLow] = useState(0);
-
 
   const ethReq = async (): Promise<any> => {
     try {
@@ -69,7 +68,7 @@ function App() {
       render={({ location }) => (
         <Box bgcolor="background.default" >
           <Header />
-          <Grid container spacing={0} direction="row">
+          <Grid container spacing={3} direction="row">
 
 
             <Grid container item spacing={1} alignItems="flex-start" direction="column" xs={3} md={3} lg={2}>
@@ -81,7 +80,7 @@ function App() {
             </Grid>
 
 
-            <Grid container item spacing={1} alignItems="flex-start" direction="column" xs={9} md={9} lg={10}>
+            <Grid container item spacing={1} alignItems="center" direction="column" xs={9} md={9} lg={10}>
               <Grid item>
                 <PoseGroup>
                   <RoutesContainer key={location.pathname}>
