@@ -10,10 +10,10 @@ export const lightTheme = createMuiTheme({
       main: '#1495CC',
       light: '#E6EFEC'
     },
-    
-    //hex for box div in App/index
+   
     background: {
-      default: '#E6EFEC'
+      default: '#E6EFEC',
+      paper: '#274268',
     }
 
   },

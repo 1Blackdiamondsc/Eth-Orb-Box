@@ -5,7 +5,8 @@ import {
   BrowserRouter, Switch, Route
 } from "react-router-dom";
 import { Typography, Grid, Box, Button, } from '@material-ui/core';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { animateScroll as scroll } from "react-scroll";
 import axios from "axios";
@@ -32,6 +33,9 @@ function App() {
   const [coinPrice, setCoinPrice] = useState(0)
   const [coinHigh, setHigh] = useState(0);
   const [coinLow, setLow] = useState(0);
+  // Grab the breakpoints from theme to use as boolean for conditional render.
+  const theme = useTheme();
+  const isMedium = useMediaQuery(theme.breakpoints.down("md"));
 
   const ethReq = async (): Promise<any> => {
     try {
@@ -67,20 +71,19 @@ function App() {
     <Route
       render={({ location }) => (
         <Box bgcolor="background.default" >
-          <Header />
-          <Grid container spacing={3} direction="row">
+          <Header isMobileMed={isMedium}/>
 
-
-            <Grid container item spacing={1} alignItems="flex-start" direction="column" xs={3} md={3} lg={2}>
+          <Grid container direction="row">
+            <Grid container item spacing={1} alignItems="flex-start" direction="column" xs={2} md={2} lg={2}>
               <Grid item>
                 <Box position="fixed">
-                  <SideBar />
+                  <SideBar isMobileMed={isMedium} />
                 </Box>
               </Grid>
             </Grid>
 
 
-            <Grid container item spacing={1} alignItems="center" direction="column" xs={9} md={9} lg={10}>
+            <Grid container item spacing={1} alignItems="flex-start"  direction="column" xs={9} md={10} lg={10}>
               <Grid item>
                 <PoseGroup>
                   <RoutesContainer key={location.pathname}>
@@ -122,7 +125,6 @@ function App() {
 
       )}
     />
-
   )
 };
 

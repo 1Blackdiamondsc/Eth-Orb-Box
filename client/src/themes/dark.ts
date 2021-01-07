@@ -10,9 +10,10 @@ export const darkTheme = createMuiTheme({
       main:'#274268',
    
     },
-    //hex for box div in App/index
+ 
     background: { 
-      default: '#274268'
+      default: '#274268',
+      paper: '#E6EFEC'
     }
   },
   typography: {
