@@ -71,19 +71,19 @@ function App() {
     <Route
       render={({ location }) => (
         <Box bgcolor="background.default" >
-          <Header isMobileMed={isMedium}/>
+          <Header isMobile={isMedium}/>
 
           <Grid container direction="row">
-            <Grid container item spacing={1} alignItems="flex-start" direction="column" xs={2} md={2} lg={2}>
+            <Grid container item spacing={1} justify="flex-start" alignItems="flex-start" direction="column" xs={2} md={2} lg={1}>
               <Grid item>
                 <Box position="fixed">
-                  <SideBar isMobileMed={isMedium} />
+                  <SideBar isMobile={isMedium} />
                 </Box>
               </Grid>
             </Grid>
 
 
-            <Grid container item spacing={1} alignItems="flex-start"  direction="column" xs={9} md={10} lg={10}>
+            <Grid container item spacing={1} alignItems="flex-start"  direction="column" xs={9} md={10} lg={11}>
               <Grid item>
                 <PoseGroup>
                   <RoutesContainer key={location.pathname}>
