@@ -4,7 +4,7 @@ import * as serviceWorker from './serviceWorker';
 import {
   BrowserRouter, Switch, Route
 } from "react-router-dom";
-import { Typography, Grid, Box, Button, } from '@material-ui/core';
+import { Grid, Box, Button, Container } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
@@ -71,20 +71,18 @@ function App() {
     <Route
       render={({ location }) => (
         <Box bgcolor="background.default" >
-          <Header isMobile={isMedium}/>
+          <Header isMobile={isMedium} />
+          <Container maxWidth="xl">
+            <Grid container alignItems="flex-start" justify="space-between" direction="row">
 
-          <Grid container direction="row">
-            <Grid container item spacing={1} justify="flex-start" alignItems="flex-start" direction="column" xs={2} md={2} lg={1}>
-              <Grid item>
+              <Grid container item xs={1} md={2} lg={2}>
                 <Box position="fixed">
                   <SideBar isMobile={isMedium} />
                 </Box>
               </Grid>
-            </Grid>
 
 
-            <Grid container item spacing={1} alignItems="flex-start"  direction="column" xs={9} md={10} lg={11}>
-              <Grid item>
+              <Grid container item xs={10} md={10} lg={10}>
                 <PoseGroup>
                   <RoutesContainer key={location.pathname}>
                     <Switch location={location}>
@@ -108,21 +106,8 @@ function App() {
                 </PoseGroup>
               </Grid>
             </Grid>
-
-          </Grid>
-
-          <Box justifyContent="flex-end" display="block">
-            <Button
-              variant="text"
-              color="primary"
-              endIcon={<ArrowUpwardIcon />}
-              onClick={() => scroll.scrollToTop()}
-              size="small"
-            > Scroll Top
-            </Button>
-          </Box>
+          </Container>
         </Box>
-
       )}
     />
   )

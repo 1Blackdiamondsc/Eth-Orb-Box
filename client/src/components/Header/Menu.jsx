@@ -1,18 +1,25 @@
 import React from 'react';
 import { Link as RLink } from 'react-router-dom';
-
 import {
-  Fade,
-  MenuItem,
-  Button,
-  Menu,
-  IconButton,
+    Fade,
+    MenuItem,
+    Button,
+    Menu,
+    IconButton,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import MenuIcon from '@material-ui/icons/Menu';
 
 
-
+const useStyles = makeStyles((theme) => ({
+    menuPaper: {
+        backgroundColor: theme.palette.primary.main
+    },
+    itemStyles: {
+        color: theme.palette.primary.main
+    }
+}));
 
 export const MenuFade = ({
     menuClick,
@@ -21,6 +28,7 @@ export const MenuFade = ({
     handleThemeChange,
     open
 }) => {
+    const classes = useStyles()
     return (
         <>
             <Button aria-controls="fade-menu" aria-haspopup="true" onClick={menuClick}>
@@ -33,8 +41,9 @@ export const MenuFade = ({
                 open={open}
                 onClose={handleClose}
                 TransitionComponent={Fade}
+                classes={{ paper: classes.menuPaper }}
             >
-                <MenuItem component={RLink} to="/" onClick={handleClose}>Home</MenuItem>
+                <MenuItem className={classes.itemStyles} component={RLink} to="/" onClick={handleClose}>Home</MenuItem>
                 <MenuItem component={RLink} to="/Services" onClick={handleClose}>Services</MenuItem>
                 <MenuItem component={RLink} to="/About" onClick={handleClose}>About</MenuItem>
                 <MenuItem component={RLink} to="/Orb" onClick={handleClose}>Orb</MenuItem>

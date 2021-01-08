@@ -1,10 +1,13 @@
 import React, { FunctionComponent } from 'react';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
+import LooksOneIcon from '@material-ui/icons/LooksOne';
+import LooksTwoIcon from '@material-ui/icons/LooksTwo';
+import Looks3Icon from '@material-ui/icons/Looks3';
+import Looks4Icon from '@material-ui/icons/Looks4';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { Link, animateScroll as scroll } from "react-scroll";
 import { BreakProps } from '../../interfaces/BreakProps/index' ;
@@ -14,8 +17,16 @@ import { BreakProps } from '../../interfaces/BreakProps/index' ;
 const scrollToTop = () => {
   scroll.scrollToTop();
 };
-
+//makeStyles hook from mui
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    ItemText: {
+      color: theme.palette.primary.main
+    }
+  }),
+);
 const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
+  const classes = useStyles()
   return (
     <div>
       {isMobile ?
@@ -31,7 +42,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
             >
               <ListItem button>
                 <ListItemIcon>
-                  <InboxIcon />
+                  < LooksOneIcon />
                 </ListItemIcon>
 
               </ListItem>
@@ -48,7 +59,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
             >
               <ListItem button>
                 <ListItemIcon>
-                  <DraftsIcon />
+                  <LooksTwoIcon />
                 </ListItemIcon>
 
               </ListItem>
@@ -56,7 +67,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
 
             <ListItem button onClick={scrollToTop}>
               <ListItemIcon>
-                <DraftsIcon />
+              <ArrowUpwardIcon />
               </ListItemIcon>
 
             </ListItem>
@@ -75,9 +86,9 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
             >
               <ListItem button>
                 <ListItemIcon>
-                  <InboxIcon />
+                  < LooksOneIcon />
                 </ListItemIcon>
-                <ListItemText primary="Section 1" />
+                <ListItemText className={classes.ItemText} primary="Section 1"/>
               </ListItem>
 
             </Link>
@@ -92,9 +103,9 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
             >
               <ListItem button>
                 <ListItemIcon>
-                  <DraftsIcon />
+                  <LooksTwoIcon />
                 </ListItemIcon>
-                <ListItemText primary="Section 2" />
+                <ListItemText className={classes.ItemText} primary="Section 2" secondary=""/>
               </ListItem>
             </Link>
 
@@ -102,7 +113,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
               <ListItemIcon>
                 <ArrowUpwardIcon />
               </ListItemIcon>
-              <ListItemText primary="scroll top" />
+              <ListItemText className={classes.ItemText} primary="scroll top"  />
             </ListItem>
           </List>
         )
