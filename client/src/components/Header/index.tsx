@@ -6,9 +6,7 @@ import { MenuFade } from './Menu';
 import { Nav } from './AppBar'
 import {BreakProps} from '../../interfaces/BreakProps/index' ;
 
-
 const Header: FunctionComponent<BreakProps> = ({ isMobile }) => {
-
   /*
     This needs the theme setter function from context to change the theme from here.
     checked as a boolean so that I can define the theme.

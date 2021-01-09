@@ -20,6 +20,10 @@ const scrollToTop = () => {
 //makeStyles hook from mui
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      margin: 0,
+      padding: 0,
+    },
     ItemText: {
       color: theme.palette.primary.main
     }
@@ -28,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
   const classes = useStyles()
   return (
-    <div>
+    <div className={classes.root}>
       {isMobile ?
         (
           <List component="nav" aria-label="sidebar">
@@ -40,9 +44,9 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
               offset={-70}
               duration={500}
             >
-              <ListItem button>
+              <ListItem  button>
                 <ListItemIcon>
-                  < LooksOneIcon />
+                  < LooksOneIcon color="primary" />
                 </ListItemIcon>
 
               </ListItem>
@@ -59,7 +63,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
             >
               <ListItem button>
                 <ListItemIcon>
-                  <LooksTwoIcon />
+                  <LooksTwoIcon color="primary" />
                 </ListItemIcon>
 
               </ListItem>
@@ -67,7 +71,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
 
             <ListItem button onClick={scrollToTop}>
               <ListItemIcon>
-              <ArrowUpwardIcon />
+              <ArrowUpwardIcon color="primary" />
               </ListItemIcon>
 
             </ListItem>
@@ -86,7 +90,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
             >
               <ListItem button>
                 <ListItemIcon>
-                  < LooksOneIcon />
+                  < LooksOneIcon  color="primary" />
                 </ListItemIcon>
                 <ListItemText className={classes.ItemText} primary="Section 1"/>
               </ListItem>
@@ -103,15 +107,15 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
             >
               <ListItem button>
                 <ListItemIcon>
-                  <LooksTwoIcon />
+                  <LooksTwoIcon  color="primary" />
                 </ListItemIcon>
-                <ListItemText className={classes.ItemText} primary="Section 2" secondary=""/>
+                <ListItemText className={classes.ItemText} primary="Section 2" />
               </ListItem>
             </Link>
 
             <ListItem button onClick={scrollToTop}>
               <ListItemIcon>
-                <ArrowUpwardIcon />
+                <ArrowUpwardIcon  color="primary" />
               </ListItemIcon>
               <ListItemText className={classes.ItemText} primary="scroll top"  />
             </ListItem>

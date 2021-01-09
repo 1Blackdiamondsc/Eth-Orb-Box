@@ -7,6 +7,7 @@ import {
 import { Grid, Box, Button, Container } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { animateScroll as scroll } from "react-scroll";
 import axios from "axios";
@@ -26,17 +27,30 @@ const RoutesContainer = posed.div({
   enter: { opacity: 1, delay: 300 },
   exit: { opacity: 0 }
 });
+//makeStyles hook from mui
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+      backgroundColor: theme.palette.background.default,
+      overflow: 'hidden',
+      margin: 0,
+    },
+  }),
+);
 const rootNode = document.getElementById('root');
+
 
 function App() {
   const [coinPrice, setCoinPrice] = useState(0)
   const [coinHigh, setHigh] = useState(0);
   const [coinLow, setLow] = useState(0);
+
   // Grab the breakpoints from theme to use as boolean for conditional render.
   const theme = useTheme();
   const isMedium = useMediaQuery(theme.breakpoints.down("md"));
-
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
   const ethReq = async (): Promise<any> => {
     try {
       console.log('before the request');
@@ -45,9 +59,9 @@ function App() {
       const dailyHigh = res.data.market_data.high_24h.usd;
       const dailyLow = res.data.market_data.low_24h.usd;
 
-      setCoinPrice(price)
-      setHigh(dailyHigh)
-      setLow(dailyLow)
+      setCoinPrice(price);
+      setHigh(dailyHigh);
+      setLow(dailyLow);
 
 
       console.log('finished eth fetch');
@@ -67,22 +81,33 @@ function App() {
   }, []);
 
 
+  /*
+  Using route from react-router, and passing location to the render prop.
+  Then, pass the location to switch statement, in the RoutesContainer so that when a route is switched, the posed div can fade.
+
+  Also, I need to render another grid container item at the end to give some spacing for the primary item.
+  */
+  const classes = useStyles();
   return (
     <Route
       render={({ location }) => (
-        <Box bgcolor="background.default" >
-          <Header isMobile={isMedium} />
-          <Container maxWidth="xl">
-            <Grid container alignItems="flex-start" justify="space-between" direction="row">
+        <div className={classes.root}>
 
-              <Grid container item xs={1} md={2} lg={2}>
-                <Box position="fixed">
+          <Header isMobile={isMobile} />
+
+          <Grid container alignItems="flex-start" justify="space-evenly" direction="row" spacing={0} wrap="nowrap">
+
+            <Grid container item xs={2} md={2} lg={2}>
+              <Grid item>
+                <Box position="fixed" p={0} m={0} >
                   <SideBar isMobile={isMedium} />
                 </Box>
               </Grid>
+            </Grid>
 
 
-              <Grid container item xs={10} md={10} lg={10}>
+            <Grid container item xs={9} md={9} lg={9}>
+              <Grid item >
                 <PoseGroup>
                   <RoutesContainer key={location.pathname}>
                     <Switch location={location}>
@@ -106,8 +131,15 @@ function App() {
                 </PoseGroup>
               </Grid>
             </Grid>
-          </Container>
-        </Box>
+            <Grid container item xs={1} md={1} lg={1}>
+              <Grid item >
+               
+              </Grid>
+            </Grid>
+          </Grid>
+
+
+        </div  >
       )}
     />
   )
