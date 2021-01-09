@@ -1,30 +1,23 @@
-import * as functions from 'firebase-functions';
-import {Request, Response} from 'express';
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-export const testAPI = functions.https.onRequest((req: Request, res: Response): void | undefined => {
+import functions = require('firebase-functions');
+import express = require('express');
+import cors = require('cors');
+
+//define express app and use the use property passing in cors reference
+const app = express();
+app.use(cors())
+
+app.get('/', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://test-cf-97bfc.web.app')
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
-  if (req.method === 'OPTIONS') {
-    //const freshInstance = await Web3. ;
-    res.status(200).end();
-    return;
-  }
-  else if (req.method === 'GET') {
-    res.send([
-      { one: "easy", two: "hard" },
-    ]);
-  }
-  else if (req.method === 'POST') {
-    const { account, instance } = req.query;
-    //const freshInstance = await Web3. ;
-    res.status(200).send([{ statusMsg: "NFT awarded post", account, instance }]);
-  }
-
-
+  res.send([
+    { one: "easy", two: "hard" },
+  ]);
 });
+app.post('/', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://test-cf-97bfc.web.app')
+  const { account, instance } = req.query;
+    //const freshInstance = await Web3. ;
+    res.status(201).send([{ statusMsg: "NFT awarded post", account, instance }]);
+})
+
+
+export const testAPI = functions.https.onRequest(app);
