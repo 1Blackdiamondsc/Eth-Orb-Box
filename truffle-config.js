@@ -11,7 +11,7 @@ module.exports = {
   networks: {
     ropsten: {
       provider: function() {
-        return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/488a994fe24f473686a36a7ba81bff81");
+        return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/83029d3d4a454afa9e7d1a7fdd484c13");
       },
       network_id: '3',
     },
@@ -21,7 +21,7 @@ module.exports = {
   },
   compilers: {
     solc: {
-      version: "0.6.2"
+      version: "0.7.5"
     }
  },
 };

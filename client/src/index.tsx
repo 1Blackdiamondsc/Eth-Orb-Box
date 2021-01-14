@@ -22,6 +22,7 @@ import About from "./components/Routes/About/index";
 import EthOrbApp from "./components/Routes/Orb/index";
 import Header from "./components/Header/index";
 import SideBar from "./components/SideBar/index";
+import OrbClass from './components/Routes/Orb/OrbClass';
 
 const RoutesContainer = posed.div({
   enter: { opacity: 1, delay: 300 },
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.default,
       overflow: 'hidden',
       margin: 0,
+      padding: 0
     },
   }),
 );
@@ -85,7 +87,7 @@ function App() {
   Using route from react-router, and passing location to the render prop.
   Then, pass the location to switch statement, in the RoutesContainer so that when a route is switched, the posed div can fade.
 
-  Also, I need to render another grid container item at the end to give some spacing for the primary item.
+  Also, I need to render another grid container item to give some distinct spacing.
   */
   const classes = useStyles();
   return (
@@ -95,18 +97,23 @@ function App() {
 
           <Header isMobile={isMobile} />
 
-          <Grid container alignItems="flex-start" justify="space-evenly" direction="row" spacing={0} wrap="nowrap">
+          <Grid container alignItems="flex-start" justify="space-around" direction="row" spacing={0} wrap="nowrap">
 
-            <Grid container item xs={2} md={2} lg={2}>
-              <Grid item>
+            <Grid container item xs={1} md={1} lg={1} spacing={1}>
+              <Grid item >
                 <Box position="fixed" p={0} m={0} >
                   <SideBar isMobile={isMedium} />
                 </Box>
               </Grid>
             </Grid>
 
+            <Grid container item xs={1} md={1}  spacing={0}>
+              <Grid item >
+              
+              </Grid>
+            </Grid>
 
-            <Grid container item xs={9} md={9} lg={9}>
+            <Grid container item xs={9} md={10} lg={10} spacing={2}>
               <Grid item >
                 <PoseGroup>
                   <RoutesContainer key={location.pathname}>
@@ -124,27 +131,27 @@ function App() {
                         <Home2 id="section2" />
                       </Route>
                       <Route path="/Orb" key="orb">
-                        <EthOrbApp ethPrice={coinPrice} ethLow={coinLow} ethHigh={coinHigh} />
+                       <OrbClass />
                       </Route>
                     </Switch>
                   </RoutesContainer>
                 </PoseGroup>
               </Grid>
             </Grid>
-            <Grid container item xs={1} md={1} lg={1}>
+            
+            <Grid container item xs={1} md={1} lg={1} spacing={0}>
               <Grid item >
-               
+              
               </Grid>
             </Grid>
+
           </Grid>
-
-
         </div  >
       )}
     />
   )
 };
-
+// <EthOrbApp ethPrice={coinPrice} ethLow={coinLow} ethHigh={coinHigh} />
 ReactDOM.render(
   <ThemeProvider>
     <BrowserRouter>

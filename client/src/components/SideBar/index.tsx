@@ -23,10 +23,11 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       margin: 0,
       padding: 0,
+      display: "flex"
     },
     ItemText: {
       color: theme.palette.primary.main
-    }
+    },
   }),
 );
 const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
@@ -35,7 +36,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
     <div className={classes.root}>
       {isMobile ?
         (
-          <List component="nav" aria-label="sidebar">
+          <List component="nav" aria-label="sidebar" >
             <Link
               activeClass="active"
               to="section1"
@@ -44,7 +45,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
               offset={-70}
               duration={500}
             >
-              <ListItem  button>
+              <ListItem button >
                 <ListItemIcon>
                   < LooksOneIcon color="primary" />
                 </ListItemIcon>
@@ -61,7 +62,7 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
               offset={-70}
               duration={500}
             >
-              <ListItem button>
+              <ListItem button >
                 <ListItemIcon>
                   <LooksTwoIcon color="primary" />
                 </ListItemIcon>
@@ -73,11 +74,8 @@ const SideBar: FunctionComponent<BreakProps> = ({ isMobile }) => {
               <ListItemIcon>
               <ArrowUpwardIcon color="primary" />
               </ListItemIcon>
-
             </ListItem>
           </List>
-
-
         ) : (
           <List component="nav" aria-label="sidebar">
             <Link

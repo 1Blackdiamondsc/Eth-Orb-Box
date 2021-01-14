@@ -12,6 +12,10 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+
+    ],
+    "predeploy": [
+      " yarn run build"
     ],
     "rewrites": [
       {

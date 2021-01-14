@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.main
     },
     itemStyles: {
-        color: theme.palette.primary.main
+        color: theme.palette.secondary.main
     }
 }));
 
@@ -44,9 +44,9 @@ export const MenuFade = ({
                 classes={{ paper: classes.menuPaper }}
             >
                 <MenuItem className={classes.itemStyles} component={RLink} to="/" onClick={handleClose}>Home</MenuItem>
-                <MenuItem component={RLink} to="/Services" onClick={handleClose}>Services</MenuItem>
-                <MenuItem component={RLink} to="/About" onClick={handleClose}>About</MenuItem>
-                <MenuItem component={RLink} to="/Orb" onClick={handleClose}>Orb</MenuItem>
+                <MenuItem className={classes.itemStyles} component={RLink} to="/Services" onClick={handleClose}>Services</MenuItem>
+                <MenuItem className={classes.itemStyles} component={RLink} to="/About" onClick={handleClose}>About</MenuItem>
+                <MenuItem className={classes.itemStyles} component={RLink} to="/Orb" onClick={handleClose}>Orb</MenuItem>
             </Menu>
             <IconButton aria-label="switch to light mode" onClick={handleThemeChange}>
                 <Brightness4Icon fontSize='small' color='primary' />
