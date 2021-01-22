@@ -12,7 +12,6 @@ export const lightTheme = createMuiTheme({
     },
    
     background: {
-      default: '#E6EFEC',
       paper: '#274268',
     }
 
@@ -23,5 +22,9 @@ export const lightTheme = createMuiTheme({
     fontWeightRegular: 400,
     fontWeightBold: 700,
     fontFamily: 'Linden Hill',
+    subtitle2: {
+      fontFamily: 'arial',
+      fontSize: 21
+    }
   },
 });

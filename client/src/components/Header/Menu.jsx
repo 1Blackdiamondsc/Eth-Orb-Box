@@ -46,7 +46,7 @@ export const MenuFade = ({
                 <MenuItem className={classes.itemStyles} component={RLink} to="/" onClick={handleClose}>Home</MenuItem>
                 <MenuItem className={classes.itemStyles} component={RLink} to="/Services" onClick={handleClose}>Services</MenuItem>
                 <MenuItem className={classes.itemStyles} component={RLink} to="/About" onClick={handleClose}>About</MenuItem>
-                <MenuItem className={classes.itemStyles} component={RLink} to="/Orb" onClick={handleClose}>Orb</MenuItem>
+                <MenuItem className={classes.itemStyles} component={RLink} to="/Orb" onClick={handleClose}>Launch Eth Orb</MenuItem>
             </Menu>
             <IconButton aria-label="switch to light mode" onClick={handleThemeChange}>
                 <Brightness4Icon fontSize='small' color='primary' />

@@ -22,5 +22,10 @@ export const darkTheme = createMuiTheme({
     fontWeightRegular: 400,
     fontWeightBold: 700,
     fontFamily: 'Linden Hill',
+
+    subtitle2: {
+      fontFamily: 'arial',
+      fontSize: 21
+    }
   },
 });

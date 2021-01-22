@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
 import ReactDOM from "react-dom";
 import * as serviceWorker from './serviceWorker';
 import {
@@ -11,6 +11,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { animateScroll as scroll } from "react-scroll";
 import axios from "axios";
+
 import posed, { PoseGroup } from 'react-pose';
 //local contexts
 import ThemeProvider from './themes/ThemeProvider';
@@ -22,14 +23,14 @@ import About from "./components/Routes/About/index";
 import EthOrbApp from "./components/Routes/Orb/index";
 import Header from "./components/Header/index";
 import SideBar from "./components/SideBar/index";
-import OrbClass from './components/Routes/Orb/OrbClass';
 
+//div from react-pose that will wrap the route, fading on route switch.
 const RoutesContainer = posed.div({
   enter: { opacity: 1, delay: 300 },
   exit: { opacity: 0 }
 });
-//makeStyles hook from mui
 
+//makeStyles hook from mui
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -41,18 +42,23 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+//root div in index
 const rootNode = document.getElementById('root');
 
 
-function App() {
+const App: FunctionComponent = () => {
+  const [marketPrice, setPrice] = useState<number[]>([])
   const [coinPrice, setCoinPrice] = useState(0)
   const [coinHigh, setHigh] = useState(0);
   const [coinLow, setLow] = useState(0);
-
+  const [account, setAccount] = useState<string[]>([])
+  const [dappReady, setReady] = useState<boolean>(false)
+  
   // Grab the breakpoints from theme to use as boolean for conditional render.
   const theme = useTheme();
   const isMedium = useMediaQuery(theme.breakpoints.down("md"));
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
+ 
   const ethReq = async (): Promise<any> => {
     try {
       console.log('before the request');
@@ -60,7 +66,12 @@ function App() {
       const price = res.data.market_data.current_price.usd;
       const dailyHigh = res.data.market_data.high_24h.usd;
       const dailyLow = res.data.market_data.low_24h.usd;
-
+     
+      setPrice(marketPrice.concat(price))
+      if (marketPrice.length === 7) {
+        setPrice(marketPrice.splice(1, 7))
+        console.log('spliced')
+      }
       setCoinPrice(price);
       setHigh(dailyHigh);
       setLow(dailyLow);
@@ -78,15 +89,14 @@ function App() {
     if (!coinPrice) {
       ethReq();
     }
-    const ethInterval = setInterval(async () => await ethReq(), 5300);
+    const ethInterval = setInterval(async () => await ethReq(), 5000);
     return () => clearInterval(ethInterval);
-  }, []);
 
-
+  })
   /*
   Using route from react-router, and passing location to the render prop.
   Then, pass the location to switch statement, in the RoutesContainer so that when a route is switched, the posed div can fade.
-
+ 
   Also, I need to render another grid container item to give some distinct spacing.
   */
   const classes = useStyles();
@@ -107,13 +117,13 @@ function App() {
               </Grid>
             </Grid>
 
-            <Grid container item xs={1} md={1}  spacing={0}>
-              <Grid item >
-              
+            <Grid container item xs={1} md={1} spacing={0}>
+              <Grid item>
+
               </Grid>
             </Grid>
 
-            <Grid container item xs={9} md={10} lg={10} spacing={2}>
+            <Grid container item xs={10} md={10} lg={10} spacing={2}>
               <Grid item >
                 <PoseGroup>
                   <RoutesContainer key={location.pathname}>
@@ -131,17 +141,20 @@ function App() {
                         <Home2 id="section2" />
                       </Route>
                       <Route path="/Orb" key="orb">
-                       <OrbClass />
+                        <EthOrbApp 
+                          ethPrice={coinPrice} ethLow={coinLow} ethHigh={coinHigh} dappReady={dappReady} 
+                          setReady={setReady} account={account} setAccount={setAccount}  marketPrice={marketPrice} 
+                        />
                       </Route>
                     </Switch>
                   </RoutesContainer>
                 </PoseGroup>
               </Grid>
             </Grid>
-            
+
             <Grid container item xs={1} md={1} lg={1} spacing={0}>
               <Grid item >
-              
+
               </Grid>
             </Grid>
 
@@ -150,8 +163,8 @@ function App() {
       )}
     />
   )
-};
-// <EthOrbApp ethPrice={coinPrice} ethLow={coinLow} ethHigh={coinHigh} />
+}
+
 ReactDOM.render(
   <ThemeProvider>
     <BrowserRouter>

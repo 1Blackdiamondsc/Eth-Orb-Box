@@ -27,7 +27,7 @@ export const Nav = ({
                 <Button variant='text' color='secondary' component={RLink} to="/">home</Button>
                 <Button variant='text' color='secondary' component={RLink} to="/Services">serv</Button>
                 <Button variant='text' color='secondary' component={RLink} to="/About">about</Button>
-                <Button variant='text' color='secondary' component={RLink} to="/Orb">apitest</Button>
+                <Button variant='text' color='secondary' component={RLink} to="/Orb">Launch Eth Orb</Button>
               </ButtonGroup>
               <IconButton color="secondary" aria-label="switch to light mode" onClick={handleThemeChange}>
                 <Brightness4Icon fontSize='small' color='secondary' />

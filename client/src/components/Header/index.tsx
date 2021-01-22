@@ -11,7 +11,7 @@ const Header: FunctionComponent<BreakProps> = ({ isMobile }) => {
     This needs the theme setter function from context to change the theme from here.
     checked as a boolean so that I can define the theme.
   */
- const setThemeName = useContext(ThemeContext);
+  const setThemeName = useContext(ThemeContext);
  const [checked, setChecked] = useState(false);
  /*
    --Menu Hooks + Variables--
