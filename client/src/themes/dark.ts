@@ -4,16 +4,21 @@ export const darkTheme = createMuiTheme({
   palette: {
     type: "dark",
     primary: {
-      main: '#1495CC'
+      main: '#274268'
+
     },
     secondary : {
-      main:'#274268',
-   
+      main:'#E6EFEC',
+      light: '#1495CC'
     },
  
     background: { 
       default: '#274268',
       paper: '#E6EFEC'
+    },
+
+    info: {
+      main: '#1495CC'
     }
   },
   typography: {
@@ -24,8 +29,38 @@ export const darkTheme = createMuiTheme({
     fontFamily: 'Linden Hill',
 
     subtitle2: {
-      fontFamily: 'arial',
+      fontFamily: "'Roboto', sans-serif" ,
       fontSize: 21
+    },
+    h1: {
+      fontFamily: 'Linden Hill' ,
+      fontSize: 50,
+      fontWeight: 500,
+      fontWeightLight: 300,
+      fontWeightBold: 1000,
+      
+    },
+    h2: {
+      fontFamily: 'Linden Hill',
+      fontSize: 30,
+      fontWeight: 500,
+      fontWeightLight: 300,
+      fontWeightBold: 1000,
+    },
+    body1: {
+      fontFamily: "'Roboto', sans-serif",
+      fontWeight: 400,
+      fontSize: "1.3rem",
+      
+      lineHeight: 1.5,
+      letterSpacing: "0.00938em"
+    },
+    body2: {
+      fontFamily: "'Roboto', sans-serif",
+      fontWeight: 400,
+      fontSize: "1.08rem",
+      lineHeight: 1.43,
+      letterSpacing: "0.01071em",
     }
   },
 });

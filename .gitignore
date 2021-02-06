@@ -2,7 +2,6 @@ node_modules
 .secret
 
 # Prod
-client/src/contracts
 client/debug.log
 client/ui-debug.log
 

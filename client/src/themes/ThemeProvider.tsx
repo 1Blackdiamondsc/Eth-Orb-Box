@@ -6,7 +6,7 @@ export const ThemeContext = React.createContext((themeName: string): void => { }
 
 const ThemeProvider: React.FC = (props) => {
     // State to hold the selected theme name
-    const [themeName, _setThemeName] = useState('darkTheme');
+    const [themeName, _setThemeName] = useState('lightTheme');
 
     // Retrieve the theme object by theme name
     const theme = getThemeByName(themeName);

@@ -1,7 +1,6 @@
-import React, { useState, useContext, useEffect, MouseEvent, FunctionComponent } from 'react';
-import { Link as RLink } from 'react-router-dom';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
   Fade,
   Toolbar,
@@ -11,30 +10,47 @@ import {
   IconButton,
 } from '@material-ui/core';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
+import { useAuth } from "../../contexts/AuthContext"
 
+const useStyles = makeStyles((theme) => ({
+  itemStyles: {
+    color: theme.palette.secondary.main
+  },
+  grow: {
+    flexGrow: 1
 
-
-
+  }
+}));
 
 export const Nav = ({
-    handleThemeChange
+  handleThemeChange
 }) => {
-    return (
-        <>
-           <AppBar position="relative">
-            <Toolbar variant="dense" >
-              <ButtonGroup variant="text" color="default" aria-label="text secondary button group">
-                <Button variant='text' color='secondary' component={RLink} to="/">home</Button>
-                <Button variant='text' color='secondary' component={RLink} to="/Services">serv</Button>
-                <Button variant='text' color='secondary' component={RLink} to="/About">about</Button>
-                <Button variant='text' color='secondary' component={RLink} to="/Orb">Launch Eth Orb</Button>
-              </ButtonGroup>
-              <IconButton color="secondary" aria-label="switch to light mode" onClick={handleThemeChange}>
-                <Brightness4Icon fontSize='small' color='secondary' />
-              </IconButton>
 
-            </Toolbar>
-          </AppBar>
-          </>
-    );
+  const { currentUser } = useAuth()
+
+  const classes = useStyles()
+  return (
+    <>
+      <AppBar position="relative">
+        <Toolbar variant="dense" >
+          <ButtonGroup variant="text" aria-label="text secondary button group">
+            <Button className={classes.itemStyles} component={Link} to="/">home</Button>
+            <Button className={classes.itemStyles} component={Link} to="/Security">Security</Button>
+            <Button className={classes.itemStyles} component={Link} to="/IT-support">IT Support</Button>
+            <Button className={classes.itemStyles} component={Link} to="/About">about</Button>
+            <Button className={classes.itemStyles} component={Link} to="/Orb">Launch Eth Orb</Button>
+          </ButtonGroup>
+          <IconButton color="secondary" aria-label="switch to light mode" onClick={handleThemeChange} >
+            <Brightness4Icon fontSize='small' color='secondary' />
+          </IconButton>
+          <div className={classes.grow} />
+          <ButtonGroup variant="text" aria-label="text secondary button group">
+            <Button disabled={currentUser} component={Link} to="/Login">Login</Button>
+            <Button disabled={currentUser} component={Link} to="/Signup">Sign Up</Button>
+          </ButtonGroup>
+
+        </Toolbar>
+      </AppBar>
+    </>
+  );
 };

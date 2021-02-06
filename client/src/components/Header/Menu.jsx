@@ -44,7 +44,8 @@ export const MenuFade = ({
                 classes={{ paper: classes.menuPaper }}
             >
                 <MenuItem className={classes.itemStyles} component={RLink} to="/" onClick={handleClose}>Home</MenuItem>
-                <MenuItem className={classes.itemStyles} component={RLink} to="/Services" onClick={handleClose}>Services</MenuItem>
+                <MenuItem className={classes.itemStyles} component={RLink} to="/Security" onClick={handleClose}>Security</MenuItem>
+                <MenuItem className={classes.itemStyles} component={RLink} to="/IT-support" onClick={handleClose}>IT Support</MenuItem>
                 <MenuItem className={classes.itemStyles} component={RLink} to="/About" onClick={handleClose}>About</MenuItem>
                 <MenuItem className={classes.itemStyles} component={RLink} to="/Orb" onClick={handleClose}>Launch Eth Orb</MenuItem>
             </Menu>

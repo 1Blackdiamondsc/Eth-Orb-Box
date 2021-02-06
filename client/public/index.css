@@ -1,3 +1,7 @@
 html, body, #root{
    margin: 0px 0px 0px 0px;
+   background-image: url("./img/cape.png");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-attachment: fixed;
 }
