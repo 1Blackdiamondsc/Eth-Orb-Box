@@ -1,5 +1,5 @@
 # Eth-Orb-Box
-## Built with the Truffle React Box
+## Built with Truffle - A node based framework for dapp development
 ## Firebase hosted at: https://test-cf-97bfc.web.app/
 ### Front-End
 React code located in the client sub directory.
