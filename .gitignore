@@ -10,3 +10,4 @@ client/ui-debug.log
 client/.eslintcache
 
 
+client/src/firebase.js
