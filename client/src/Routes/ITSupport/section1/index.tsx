@@ -6,7 +6,7 @@ type Props = {
 
     id: string
 }
-export const ITSupp: FunctionComponent<Props> = ({ id }) => {
+export const ITSupp1: FunctionComponent<Props> = ({ id }) => {
     return (
         <div id={id}>
           

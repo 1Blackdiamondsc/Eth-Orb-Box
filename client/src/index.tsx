@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {
   BrowserRouter, Switch, Route
 } from "react-router-dom";
-import { Grid, Box,} from '@material-ui/core';
+import { Grid, Box, } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -15,15 +15,10 @@ import { AuthProvider } from './contexts/AuthContext';
 //interfaces
 import { SideBarProps } from './interfaces/SideBarProps';
 //comp imports
-import { Home } from "./Routes/Home/section1";
-import { Home2 } from "./Routes/Home/section2";
-import { Home3 } from "./Routes/Home/section3";
-import { Sec } from "./Routes/Security/section1";
-import { Sec2 } from "./Routes/Security/section2";
-import { Sec3 } from "./Routes/Security/section3";
-import { ITSupp } from './Routes/ITSupport/section1';
-import { ITSupp2 } from './Routes/ITSupport/section2';
-import { ITSupp3 } from './Routes/ITSupport/section3';
+import { Home } from "./Routes/Home";
+import { Sec } from "./Routes/Security";
+import { ITSupp } from './Routes/ITSupport/index';
+
 import EthOrbApp from "./Routes/Orb/index";
 import Header from "./components/Header/index";
 import SideBar from './components/SideBar/index';
@@ -36,7 +31,7 @@ import UpdateAccount from './Routes/UpdateAccount';
 import ForgotPassword from './Routes/ForgotPassword'
 //div from react-pose that will wrap the route, fading on route switch.
 const RoutesContainer = posed.div({
-  enter: { opacity: 1, delay: 300 },
+  enter: { opacity: 1, delay: 500 },
   exit: { opacity: 0 }
 });
 
@@ -51,26 +46,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
 //root div in index
 const rootNode = document.getElementById('root');
 
-
-//props for sidebars. hard coded. should improve in future
-const homeItems: SideBarProps[] = [
-  { id: 1, section: "section2", name: "Our Services" },
-  { id: 2, section: "section3", name: "About SharpTec" },
-]
-const secItems: SideBarProps[] = [
-  { id: 0, section: "section1", name: "Cyber Security" },
-  { id: 1, section: "section2", name: "Physical Security" },
-]
-
-const ITItems: SideBarProps[] = [
-  { id: 0, section: "section1", name: "Intro" },
-  { id: 1, section: "section2", name: "Software" },
-  { id: 2, section: "section3", name: "Hardware" },
-
-]
 
 const App: FunctionComponent = () => {
   const [marketPrice, setPrice] = useState<number[]>([])
@@ -106,18 +85,18 @@ const App: FunctionComponent = () => {
       console.log(error);
     }
   };
-/*
-
-  temporarily not important. but does work.
-  useEffect(() => {
-    if (marketPrice.length === 0) {
-      ethReq();
-    }
-    const ethInterval = setInterval(async () => await ethReq(), 5000);
-    return () => clearInterval(ethInterval);
-
-  }) 
-  */
+  /*
+  
+    temporarily not important. but does work.
+    useEffect(() => {
+      if (marketPrice.length === 0) {
+        ethReq();
+      }
+      const ethInterval = setInterval(async () => await ethReq(), 5000);
+      return () => clearInterval(ethInterval);
+  
+    }) 
+    */
   /*
   Wrap the app with firebase Auth context.
 
@@ -127,6 +106,9 @@ const App: FunctionComponent = () => {
   I need to render empty grid container items to give some spacing.
 
   The SideBar component will be routing to the corresponding section using a string id. Section id's are passed as props into the components/pages.
+
+
+
   */
   const classes = useStyles();
   return (
@@ -137,80 +119,45 @@ const App: FunctionComponent = () => {
 
             <Header isMobile={isMobile} />
 
-            <Grid container direction="row" spacing={0} wrap="nowrap">
+            <PoseGroup>
+              <RoutesContainer key={location.pathname}>
+                <Switch location={location}>
 
-              <Grid container item xs={1} md={1} lg={1} spacing={0}>
-                <Grid item >
-
-                  <Switch>
-                    <Route exact path="/" key="home">
-                      <Box position="fixed" p={0} m={0} >
-                        <SideBar links={homeItems} isMobile={isMedium} />
-                      </Box>
-                    </Route>
-                    <Route path="/Security" key="Sec">
-                      <Box position="fixed" p={0} m={0} >
-                        <SideBar links={secItems} isMobile={isMedium} />
-                      </Box>
-                    </Route>
-                    <Route path="/it-support" key="IT">
-                      <Box position="fixed" p={0} m={0} >
-                        <SideBar links={ITItems} isMobile={isMedium} />
-                      </Box>
-                    </Route>
-                  </Switch>
+                  <Route exact path="/" key="home">
+                    <Home isMedium={isMedium} />
+                  </Route>
 
 
-                </Grid>
-              </Grid>
+                  <Route exact path="/Security" key="sec">
+                    <Sec isMedium={isMedium} />
+                  </Route>
 
 
-              <Grid item xs={1} md={1} lg={1}  />
+                  <Route exact path="/IT-Support" key="it-supp">
+                    <ITSupp isMedium={isMedium} />
+                  </Route>
 
+                  <Route exact path="/About" key="about">
+                    <About />
+                  </Route>
 
-
-              <Grid container item xs={9} md={10} lg={9} spacing={2}>
-                <Grid item >
-                  <PoseGroup>
-                    <RoutesContainer key={location.pathname}>
-                      <Switch location={location}>
-                        <Route exact path="/" key="home" >
-                          <Home />
-                          <Home2 id="section2" />
-                          <Home3 id="section3" />
-                        </Route>
-                        <Route path="/Security" key="sec"  >
-                          <Sec id="section1" />
-                          <Sec2 id="section2" />
-                        </Route>
-                        <Route path="/IT-support" key="IT">
-                          <ITSupp id="section1" />
-                          <ITSupp2 id="section2" />
-                          <ITSupp3 id="section2" />
-                        </Route>
-                        <Route path="/About" key="about"  >
-                          <About />
-                        </Route>
-                        <Route path="/Orb" key="orb">
-                          <EthOrbApp
-                            dappReady={dappReady} setReady={setReady} account={account}
-                            setAccount={setAccount} marketPrice={marketPrice}
-                          />
-                        </Route>
-                        <PrivateRoute path="/Dashboard" component={Dashboard} />
-                        <PrivateRoute path="/Update-Account" component={UpdateAccount} />
-                        <Route path="/Login" component={Login} />
-                        <Route path="/Signup" component={Signup} />
-                        <Route path="/Forgot-Password" component={ForgotPassword} />
-                      </Switch>
-                    </RoutesContainer>
-                  </PoseGroup>
-                </Grid>
-              </Grid>
-              <Grid item xs={false} md={1} lg={1}/>
-            </Grid>
-          </div  >
-        )}
+                  <Route path="/Orb" key="orb">
+                    <EthOrbApp
+                      dappReady={dappReady} setReady={setReady} account={account}
+                      setAccount={setAccount} marketPrice={marketPrice}
+                    />
+                  </Route>
+                  <PrivateRoute path="/Dashboard" component={Dashboard} />
+                  <PrivateRoute path="/Update-Account" component={UpdateAccount} />
+                  <Route path="/Login" component={Login} key="login" />
+                  <Route path="/Signup" component={Signup} />
+                  <Route path="/Forgot-Password" component={ForgotPassword} />
+                </Switch>
+              </RoutesContainer>
+            </PoseGroup>
+          </div>
+        )
+        }
       />
     </AuthProvider>
   )

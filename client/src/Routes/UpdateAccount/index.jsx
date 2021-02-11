@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
 import { Alert } from '@material-ui/lab';
+import { TextField, Button } from '@material-ui/core';
 
 export default function UpdateAccount() {
     const emailRef = useRef()
@@ -31,7 +32,7 @@ export default function UpdateAccount() {
 
         Promise.all(promises)
             .then(() => {
-                history.push("/")
+                history.push("/Dashboard")
             })
             .catch(() => {
                 setError("Failed to update account")

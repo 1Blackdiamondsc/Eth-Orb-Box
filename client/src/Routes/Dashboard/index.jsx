@@ -3,7 +3,7 @@ import { Button, Typography, } from "@material-ui/core"
 import { Alert } from '@material-ui/lab';
 import { useAuth } from "../../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
-import TwoCards from "../../components/Dumb/Grids/CardGrids/TwoXOne"
+import TwoCards from "../../components/Dumb/Grids/UtilityGrids/TwoXOne"
 
 export default function Dashboard() {
     const [error, setError] = useState("")

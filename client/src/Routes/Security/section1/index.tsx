@@ -7,7 +7,7 @@ type Props = {
 
     id: string
 }
-export const Sec: FunctionComponent<Props> = ({ id }) => {
+export const Sec1: FunctionComponent<Props> = ({ id }) => {
     return (
         <div id={id}>
           

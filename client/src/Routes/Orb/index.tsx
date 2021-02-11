@@ -4,12 +4,14 @@ import axios from 'axios'
 import {
   Button, 
   Paper,
-  Container
+  Container,
+  Typography
 
 } from '@material-ui/core';
 import BuildIcon from '@material-ui/icons/Build';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import EthMarkup from "./EthMarkup.jsx";
+import { Typog } from '../../components/Dumb/TypographyComps/';
 
 type OrbProps = {
   marketPrice: number[],
@@ -38,10 +40,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount, setReady, marketPrice }) => {
   const [res, setRes] = useState()
+
+
+
   const postTest = async (account: string) => {
+
     await axios({
       method: 'post',
-      url: 'https://us-central1-test-cf-97bfc.cloudfunctions.net/testAPI',
+      url: 'https://us-central1-test-cf-97bfc.cloudfunctions.net/testAPI/',
+      headers: {
+        crossDomain: true,
+      },
       data: {
         account: account
       }
@@ -53,6 +62,8 @@ const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount
         console.log(error);
       });
   };
+
+
 
   const mMask =  async () => {
     // @ts-ignore
@@ -88,15 +99,7 @@ const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount
 
   }
 
-  useEffect(() => {
-    return () => {
-      //clean the state on unMount.
-       // @ts-ignore
-      setAccount(account.splice(0, account.length))
-      setReady(false)
-      // @ts-ignore
-    };
-  }, []);
+
 
   
   return (
@@ -108,6 +111,7 @@ const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount
         <BuildIcon/>
         <BuildIcon/>
         <BuildIcon/>
+        <Typog align='center' variant='h1' text={account[0]} color='primary' />
         <Button variant="text" onClick={mMask}>connect metamask</Button>
         <Button variant="text" onClick={() => postTest(account[0])}>test mint</Button>
       </Container>

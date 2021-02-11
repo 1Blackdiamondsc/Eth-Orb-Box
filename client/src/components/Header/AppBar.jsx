@@ -36,7 +36,7 @@ export const Nav = ({
           <ButtonGroup variant="text" aria-label="text secondary button group">
             <Button className={classes.itemStyles} component={Link} to="/">home</Button>
             <Button className={classes.itemStyles} component={Link} to="/Security">Security</Button>
-            <Button className={classes.itemStyles} component={Link} to="/IT-support">IT Support</Button>
+            <Button className={classes.itemStyles} component={Link} to="/IT-Support">IT Support</Button>
             <Button className={classes.itemStyles} component={Link} to="/About">about</Button>
             <Button className={classes.itemStyles} component={Link} to="/Orb">Launch Eth Orb</Button>
           </ButtonGroup>
@@ -45,8 +45,14 @@ export const Nav = ({
           </IconButton>
           <div className={classes.grow} />
           <ButtonGroup variant="text" aria-label="text secondary button group">
+            {currentUser && <Button disabled={!currentUser} component={Link} to="/Dashboard"> Account Dashboard</Button>}
+            {currentUser && <Button disabled={!currentUser} component={Link} to="/Update-Account"> Edit Account</Button>}
+          </ButtonGroup>
+          <ButtonGroup variant="text" aria-label="text secondary button group">
+          
             <Button disabled={currentUser} component={Link} to="/Login">Login</Button>
             <Button disabled={currentUser} component={Link} to="/Signup">Sign Up</Button>
+            
           </ButtonGroup>
 
         </Toolbar>

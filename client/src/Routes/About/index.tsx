@@ -1,10 +1,11 @@
 import React from 'react'
+import { Container } from '@material-ui/core'
 import { TwoxOne } from '../../components/Dumb/Grids/TextGrids/TwoxTwo';
 import { ThreexOne } from '../../components/Dumb/Grids/TextGrids/ThreexOne';
 
 function About() {
     return (
-        <div >
+        <Container>
            
                 <TwoxOne
                     header1="about"
@@ -49,7 +50,7 @@ function About() {
 
                 />
        
-        </div>
+        </Container>
     )
 }
 export default About;

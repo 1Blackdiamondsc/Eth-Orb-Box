@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import { Button, Typography, } from "@material-ui/core"
+import { Button, Typography, TextField} from "@material-ui/core"
 import { Alert } from '@material-ui/lab';
 import { useAuth } from "../../contexts/AuthContext"
 import { Link } from "react-router-dom"
@@ -32,8 +32,7 @@ export default function ForgotPassword() {
             {error && <Alert severity="error">{error}</Alert>}
             {message && <Alert severity="success">{message}</Alert>}
             <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-                <TextField id="outlined-basic" label="Email" variant="outlined" defaultValue={currentUser.email} inputRef={emailRef} required />
-
+                <TextField id="outlined-basic" label="Email" variant="outlined"  inputRef={emailRef} required />
                 <Button variant="text" type="submit">Submit</Button>
                 <Button variant="outlined" component={Link} to="/Signup"> Sign Up Here </Button>
             </form>
