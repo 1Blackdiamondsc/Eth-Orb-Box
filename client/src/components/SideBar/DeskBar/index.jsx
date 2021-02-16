@@ -25,9 +25,6 @@ const useStyles = makeStyles((theme) =>
         list: {
             maxWidth: "75%"
         },
-        ItemText: {
-            color: theme.palette.primary.main
-        },
     }),
 );
 
@@ -45,14 +42,14 @@ const DeskBar = ({ links }) => {
                         key={id}
                         spy={true}
                         smooth={true}
-                        offset={-70}
+                        offset={0}
                         duration={500}
                     >
                         <ListItem button>
                             <ListItemIcon>
                                 < FiberManualRecordTwoToneIcon color="primary" />
                             </ListItemIcon>
-                            <ListItemText className={classes.ItemText} primary={name} dense="true" />
+                            <ListItemText color="primary"  primary={name} dense="true" />
                         </ListItem>
 
                     </Link>

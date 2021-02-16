@@ -12,16 +12,12 @@ import posed, { PoseGroup } from 'react-pose';
 //local contexts
 import ThemeProvider from './themes/ThemeProvider';
 import { AuthProvider } from './contexts/AuthContext';
-//interfaces
-import { SideBarProps } from './interfaces/SideBarProps';
 //comp imports
 import { Home } from "./Routes/Home";
 import { Sec } from "./Routes/Security";
 import { ITSupp } from './Routes/ITSupport/index';
-
 import EthOrbApp from "./Routes/Orb/index";
 import Header from "./components/Header/index";
-import SideBar from './components/SideBar/index';
 import About from './Routes/About';
 import PrivateRoute from './PrivateRoute';
 import Login from './Routes/LogIn';
@@ -29,6 +25,7 @@ import Signup from './Routes/SignUp';
 import Dashboard from './Routes/Dashboard';
 import UpdateAccount from './Routes/UpdateAccount';
 import ForgotPassword from './Routes/ForgotPassword'
+
 //div from react-pose that will wrap the route, fading on route switch.
 const RoutesContainer = posed.div({
   enter: { opacity: 1, delay: 500 },
@@ -96,18 +93,17 @@ const App: FunctionComponent = () => {
       return () => clearInterval(ethInterval);
   
     }) 
-    */
+  */
+
   /*
   Wrap the app with firebase Auth context.
 
   Using route from react-router, and passing location to the render prop.
   Then, pass the location to switch statement, in the RoutesContainer so that when a route is switched, the posed div can fade.
  
-  I need to render empty grid container items to give some spacing.
-
-  The SideBar component will be routing to the corresponding section using a string id. Section id's are passed as props into the components/pages.
-
-
+  I am planning on using children for the route components. This will allow me to compose the routes with more control.
+  
+  The SideBar component will be routing to the corresponding section using a string id (React-Scroll). Section id's are passed as props into the components/pages.
 
   */
   const classes = useStyles();
@@ -147,11 +143,13 @@ const App: FunctionComponent = () => {
                       setAccount={setAccount} marketPrice={marketPrice}
                     />
                   </Route>
+
                   <PrivateRoute path="/Dashboard" component={Dashboard} />
                   <PrivateRoute path="/Update-Account" component={UpdateAccount} />
-                  <Route path="/Login" component={Login} key="login" />
+                  <Route path="/Login" component={Login}  />
                   <Route path="/Signup" component={Signup} />
                   <Route path="/Forgot-Password" component={ForgotPassword} />
+
                 </Switch>
               </RoutesContainer>
             </PoseGroup>

@@ -44,7 +44,7 @@ const MobileBar = ({ links }) => {
             key={id}
             spy={true}
             smooth={true}
-            offset={-70}
+            offset={0}
             duration={500}
           >
 
