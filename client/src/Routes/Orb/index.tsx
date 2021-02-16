@@ -1,12 +1,13 @@
 import React, { FunctionComponent, useState, useEffect, SetStateAction } from 'react';
 import Web3 from 'web3';
+import Contract from 'web3-eth-contract';
+import SimpleStorage from '../../contracts/SimpleStorage.json'
 import axios from 'axios'
 import {
-  Button, 
+  Button,
   Paper,
   Container,
   Typography
-
 } from '@material-ui/core';
 import BuildIcon from '@material-ui/icons/Build';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -16,7 +17,7 @@ import { Typog } from '../../components/Dumb/TypographyComps/';
 type OrbProps = {
   marketPrice: number[],
   dappReady: boolean,
-  account: string[] ,
+  account: string[],
   setAccount: React.Dispatch<SetStateAction<string[]>>,
   setReady: React.Dispatch<SetStateAction<boolean>>
 
@@ -25,35 +26,34 @@ type OrbProps = {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
-      backgroundColor: theme.palette.background.default,
-      overflow: 'hidden',
-      margin: 0,
-      padding: 0
+      root: {
+        height: "100vh",
+      }
     },
   }),
 );
 
-  
+
 
 //storageValue: 0, web3: null, accounts: null, contract: null
 
 const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount, setReady, marketPrice }) => {
-  const [res, setRes] = useState()
 
 
 
+ 
   const postTest = async (account: string) => {
 
     await axios({
       method: 'post',
-      url: 'https://us-central1-test-cf-97bfc.cloudfunctions.net/testAPI/',
+      url: 'https://us-central1-test-cf-97bfc.cloudfunctions.net/testAPI',
       headers: {
-        crossDomain: true,
+        'content-type': 'application/json'
       },
       data: {
         account: account
-      }
+      },
+
     }).then(function (response) {
       console.log(response);
 
@@ -65,7 +65,7 @@ const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount
 
 
 
-  const mMask =  async () => {
+  const mMask = async () => {
     // @ts-ignore
     const web3 = new Web3(window.ethereum);
     // @ts-ignore
@@ -76,6 +76,7 @@ const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount
         window.ethereum.request({ method: 'eth_requestAccounts' });
         const accounts = await web3.eth.getAccounts();
         setAccount(accounts)
+        console.log(accounts)
         setReady(true)
       } catch (error) {
         console.log(error)
@@ -101,19 +102,21 @@ const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount
 
 
 
-  
+  const classes = useStyles()
   return (
     <div>
-      <Container> 
-        <BuildIcon/>
-        <BuildIcon/>
-        <BuildIcon/>
-        <BuildIcon/>
-        <BuildIcon/>
-        <BuildIcon/>
+
+
+      <Container>
+        <BuildIcon />
+        <BuildIcon />
+        <BuildIcon />
+        <BuildIcon />
+        <BuildIcon />
+        <BuildIcon />
         <Typog align='center' variant='h1' text={account[0]} color='primary' />
         <Button variant="text" onClick={mMask}>connect metamask</Button>
-        <Button variant="text" onClick={() => postTest(account[0])}>test mint</Button>
+        <Button variant="text" onClick={()=> postTest(account[0])}>test mint</Button>
       </Container>
     </div>
   );
