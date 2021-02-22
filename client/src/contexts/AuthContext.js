@@ -27,6 +27,28 @@ export function AuthProvider({ children }) {
     return auth.sendPasswordResetEmail(email)
   }
 
+  function testPost() {
+    auth.currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+      await axios({
+        method: 'get',
+        url: 'https://us-central1-test-cf-97bfc.cloudfunctions.net/testAPI/hello',
+        headers: {
+          'Authorization': `Bearer ${idToken}`
+        },
+
+      }).then(function (response) {
+        console.log(response);
+        alert(response)
+
+      })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    }).catch(function (error) {
+      console.log(error)
+    });
+  }
   function updateEmail(email) {
     return currentUser.updateEmail(email)
   }
@@ -48,10 +70,11 @@ export function AuthProvider({ children }) {
     currentUser,
     login,
     signup,
-    logout, 
+    logout,
     resetPassword,
     updateEmail,
-    updatePassword
+    updatePassword,
+    testPost
   }
 
   return (

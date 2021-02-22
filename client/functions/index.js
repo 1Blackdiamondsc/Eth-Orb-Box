@@ -1,33 +1,73 @@
-const functions = require('firebase-functions');
-const express = require('express');
-const cors = require('cors');
+'use strict';
 const Web3 = require('web3');
 const Contract = require('web3-eth-contract');
-
-
-const corsOptions = {
-  origin: 'https://test-cf-97bfc.web.app',
-  optionsSuccessStatus: 200 ,
-}
-
-
-//define express app use the use property and pass in cors options. res.setHeader( "Access-Control-Allow-Origin" ,"https://test-cf-97bfc.web.app" )
-
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp();
+const express = require('express');
+const cookieParser = require('cookie-parser')();
+const cors = require('cors')({origin: true});
 const app = express();
-app.use(cors());
 
-app.use(express.json()) 
-/*
-app.use(cors({
-  origin: function(origin, callback){   
-    if(allowedOrigins.indexOf(origin) === -1){
-      var msg = 'The CORS policy for this site does not ' +
-                'allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }  return callback(null, true);
+
+
+
+// Express middleware that validates Firebase ID Tokens passed in the Authorization HTTP header.
+// The Firebase ID token needs to be passed as a Bearer token in the Authorization HTTP header like this:
+// `Authorization: Bearer <Firebase ID Token>`.
+// when decoded successfully, the ID Token content will be added as `req.user`.
+const validateFirebaseIdToken = async (req, res, next) => {
+  console.log('Check if request is authorized with Firebase ID token');
+
+  if ((!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) &&
+      !(req.cookies && req.cookies.__session)) {
+    console.error('No Firebase ID token was passed as a Bearer token in the Authorization header.',
+        'Make sure you authorize your request by providing the following HTTP header:',
+        'Authorization: Bearer <Firebase ID Token>',
+        'or by passing a "__session" cookie.');
+    res.status(403).send('Unauthorized');
+    return;
   }
-}));
-*/
+
+  let idToken;
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+    console.log('Found "Authorization" header');
+    // Read the ID Token from the Authorization header.
+    idToken = req.headers.authorization.split('Bearer ')[1];
+  } else if(req.cookies) {
+    console.log('Found "__session" cookie');
+    // Read the ID Token from cookie.
+    idToken = req.cookies.__session;
+  } else {
+    // No cookie
+    res.status(403).send('Unauthorized');
+    return;
+  }
+
+  try {
+    const decodedIdToken = await admin.auth().verifyIdToken(idToken);
+    console.log('ID Token correctly decoded', decodedIdToken);
+    req.user = decodedIdToken;
+    next();
+    return;
+  } catch (error) {
+    console.error('Error while verifying Firebase ID token:', error);
+    res.status(403).send('Unauthorized');
+    return;
+  }
+};
+
+app.use(cors);
+app.use(cookieParser);
+app.use(validateFirebaseIdToken);
+app.get('/hello', (req, res) => {
+  // @ts-ignore
+  res.send(`Hello ${req.user.name}`);
+});
+
+
+
+
 
 app.post('/', cors(corsOptions), async (req, res) => {
    //grab the account address of the player (from front-end)
@@ -63,12 +103,7 @@ app.post('/', cors(corsOptions), async (req, res) => {
  
 
 });
-app.get('/', cors(corsOptions), (req, res) => {
 
-  res.send([
-    { one: "easy", two: "hard" },
-  ]);
-});
 
 
 

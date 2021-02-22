@@ -1,8 +1,6 @@
 import React, { FunctionComponent, useState, useEffect, SetStateAction } from 'react';
 import Web3 from 'web3';
-import Contract from 'web3-eth-contract';
-import SimpleStorage from '../../contracts/SimpleStorage.json'
-import axios from 'axios'
+import { useAuth } from "../../contexts/AuthContext"
 import {
   Button,
   Paper,
@@ -39,28 +37,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount, setReady, marketPrice }) => {
 
-
+  const { testPost } = useAuth()
 
  
-  const postTest = async (account: string) => {
+  const postTest = async () => {
+    try {
+      await testPost()
+     
+  } catch {
+      console.log('error in app')
+  }
 
-    await axios({
-      method: 'post',
-      url: 'https://us-central1-test-cf-97bfc.cloudfunctions.net/testAPI',
-      headers: {
-        'content-type': 'application/json'
-      },
-      data: {
-        account: account
-      },
-
-    }).then(function (response) {
-      console.log(response);
-
-    })
-      .catch(function (error) {
-        console.log(error);
-      });
   };
 
 
@@ -105,8 +92,6 @@ const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount
   const classes = useStyles()
   return (
     <div>
-
-
       <Container>
         <BuildIcon />
         <BuildIcon />
@@ -116,7 +101,7 @@ const EthOrbApp: FunctionComponent<OrbProps> = ({ dappReady, account, setAccount
         <BuildIcon />
         <Typog align='center' variant='h1' text={account[0]} color='primary' />
         <Button variant="text" onClick={mMask}>connect metamask</Button>
-        <Button variant="text" onClick={()=> postTest(account[0])}>test mint</Button>
+        <Button variant="text" onClick={postTest}>test mint</Button>
       </Container>
     </div>
   );
