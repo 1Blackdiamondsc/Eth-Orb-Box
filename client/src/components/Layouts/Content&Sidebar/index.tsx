@@ -12,7 +12,7 @@ type Props = {
 //LeftPosition prop can determine the css position for LeftItem
 //center will be the main content of the layout 
 
-const Layout: FunctionComponent<Props> = ({
+const Layout1: FunctionComponent<Props> = ({
     LeftItem,
     Center,
     LeftPosition
@@ -52,4 +52,4 @@ const Layout: FunctionComponent<Props> = ({
         </div>
     )
 }
-export default Layout
+export default Layout1
