@@ -24,7 +24,7 @@
     "react-pose": "^4.0.10",
     "react-query": "^3.12.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^4.0.3",
     "react-scroll": "^1.8.1",
     "react-toastify": "^6.1.0",
     "scrypt-js": "^3.0.1",
