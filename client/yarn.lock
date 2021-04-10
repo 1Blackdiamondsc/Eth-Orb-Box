@@ -8779,10 +8779,10 @@ match-sorter@^6.0.2:
     "@babel/runtime" "^7.12.5"
     remove-accents "0.4.2"
 
-material-ui-image@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/material-ui-image/-/material-ui-image-3.3.0.tgz#4bf2c5e41f89a7a8c550fdddeadb3bf59647b807"
-  integrity sha512-6Gec+ZtcCnIH+WzcDFT4ayCoUeQouVs6WfZW5ZN7PFU3GITXQ974rJjM5laoMyK0pga1ZiHLMeBTaGxCYexYhg==
+material-ui-image@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/material-ui-image/-/material-ui-image-3.3.1.tgz#88f9a85b9865ef9a73523dc79e299ea203a5f9d8"
+  integrity sha512-cf51V0cDng4e39mG8dcJkVegNW5UzurhLtI5eASJaDAEW+nUmVcUiZiCyokFMMCoirLt6GWHBLRFVcohJV6dag==
   dependencies:
     prop-types "^15.5.8"
 
